@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const url = "http://localhost:3001";
 
-export const getAllCharacter = () => {
+export const getAllPokemons = () => {
   return axios.get(`${url}/pokemons`);
 };
 
