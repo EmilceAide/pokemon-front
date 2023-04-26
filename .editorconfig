@@ -1,0 +1,9 @@
+root = true #Buscara en root
+
+
+[*] 
+indent_style = space #tabulador espacio
+indent_size = 2  #cuanto espacio queremos que deje al tabular
+charset = utf-8  #caracter utf-8
+trim_trailing_whitespace = true # elimina espacio al final de la línea
+insert_final_newline = true # agrega una linea mas al final cuando guardamos el archivo
