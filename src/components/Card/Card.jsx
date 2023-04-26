@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Card = () => {
+
+const Card = ({name, image, type}) => {
     return (
         <div>
-            <p>Card</p>
+            <h1>Nombre: {name} </h1>
+            <img src={image} alt="Avatar del pokemón" />
+            <p>Tipo: {type} </p>
         </div>
     );
 }
