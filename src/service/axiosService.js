@@ -10,7 +10,7 @@ export const getPokemonById = (id) => {
   return axios.get(`${url}/pokemons/${id}`);
 };
 
-export const getPokemonName = (name) => {
+export const getPokemonByName = (name) => {
     return axios.get(`${url}/pokemons/${name}`);
 }
 
