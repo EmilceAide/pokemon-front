@@ -1,6 +1,15 @@
-import { getAllPokemons, getPokemonById, getPokemonTypes } from "../service/axiosService";
-import { GET_POKEMONS,  GET_POKEMON_ID, GET_TYPES } from "./actions-types";
-
+import {
+  getAllPokemons,
+  getPokemonById,
+  getPokemonTypes,
+  getPokemonByName,
+} from "../service/axiosService";
+import {
+  GET_POKEMONS,
+  GET_POKEMON_ID,
+  GET_TYPES,
+  GET_POKEMON_NAME,
+} from "./actions-types";
 
 export const getPokemons = () => {
   return async (dispatch) => {
@@ -10,15 +19,22 @@ export const getPokemons = () => {
 };
 
 export const getPokemon = () => {
-    return async (dispatch) => {
-      const data = await getPokemonById(3);
-      dispatch({ type: GET_POKEMON_ID, payload: data.data });
-    };
+  return async (dispatch) => {
+    const data = await getPokemonById(3);
+    dispatch({ type: GET_POKEMON_ID, payload: data.data });
   };
+};
 
-  export const getTypes = () => {
-    return async (dispatch) => {
-      const data = await getPokemonTypes();
-      dispatch({ type: GET_TYPES, payload: data.data });
-    };
+export const getPokemonName = (name) => {
+  return async (dispatch) => {
+    const data = await getPokemonByName(name);
+    dispatch({ type: GET_POKEMON_NAME, payload: data.data });
   };
+};
+
+export const getTypes = () => {
+  return async (dispatch) => {
+    const data = await getPokemonTypes();
+    dispatch({ type: GET_TYPES, payload: data.data });
+  };
+};

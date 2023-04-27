@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import CardsContainer from '../../components/CardsContainer/CardsContainer';
-import { getPokemons } from '../../redux/actions'
+import CardsContainer from "../../components/CardsContainer/CardsContainer";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import { getPokemons } from "../../redux/actions";
 
 const Home = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getPokemons());
-    }, []);
+  useEffect(() => {
+    dispatch(getPokemons());
+  }, []);
 
-    return (
-        <div>
-            <h1>Home</h1>
-            <CardsContainer/>
-        </div>
-    );
-}
+  return (
+    <div>
+      <SearchBar />
+      <h1>Home</h1>
+      <CardsContainer />
+    </div>
+  );
+};
 
 export default Home;

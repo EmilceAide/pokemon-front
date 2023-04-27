@@ -1,26 +1,34 @@
-import { GET_POKEMONS,  GET_POKEMON_ID, GET_TYPES } from "./actions-types";
+import {
+  GET_POKEMONS,
+  GET_POKEMON_ID,
+  GET_TYPES,
+  GET_POKEMON_NAME,
+} from "./actions-types";
 
 const initialState = {
   pokemons: [],
   pokemonId: [],
+  pokemonName: [],
   pokemonTypes: [],
+};
 
-  };
-  
-  const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case GET_POKEMONS:
-        return {...state, pokemons: action.payload};
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_POKEMONS:
+      return { ...state, pokemons: action.payload };
 
-      case  GET_POKEMON_ID:
-        return {pokemonId: action.payload};
-        
-      case GET_TYPES:
-        return {...state, pokemonTypes: action.payload};
-      
-      default:
-        return { ...state };
-    }
-  };
-  
-  export default rootReducer;
+    case GET_POKEMON_ID:
+      return { pokemonId: action.payload };
+
+    case GET_TYPES:
+      return { ...state, pokemonTypes: action.payload };
+
+    case GET_POKEMON_NAME:
+      return { ...state, pokemonName: action.payload };
+
+    default:
+      return { ...state };
+  }
+};
+
+export default rootReducer;
