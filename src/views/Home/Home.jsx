@@ -5,6 +5,7 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { getPokemons } from "../../redux/actions";
 
 const Home = () => {
+
   const dispatch = useDispatch();
 
   useEffect(() => {

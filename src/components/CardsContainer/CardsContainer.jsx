@@ -1,16 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector } from "react-redux";
 
 import Card from "../Card/Card";
 
 const CardsContainer = () => {
+  let detail = false;
+  const { pokemons } = useSelector((state) => state);
 
-  let detail = false; 
-  const { pokemons} = useSelector((state) => state);
+  const [current, setCurrent] = useState(1);
+
+  const amount = 12;
+  const last = current * amount;
+  const first = last - amount;
+  const data = pokemons.slice(first, last);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(pokemons.length / amount); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div>
-      {pokemons.map((pokemon) => {
+      {pageNumbers.map((pageNum) => (
+        <button key={pageNum} onClick={() => setCurrent(pageNum)}>
+          {pageNum}
+        </button>
+      ))}
+      {data.map((pokemon) => {
         return (
           <Card
             key={pokemon.id}
