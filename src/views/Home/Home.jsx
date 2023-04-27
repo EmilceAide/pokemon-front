@@ -12,10 +12,11 @@ const Home = () => {
     dispatch(getPokemons());
   }, []);
 
+
   return (
     <div>
       <h1>Home</h1>
-      <CardsContainer />
+      <CardsContainer/>
     </div>
   );
 };

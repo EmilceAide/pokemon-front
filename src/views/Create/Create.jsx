@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import { getTypes } from "../../redux/actions";
 
 const Create = () => {
+
+  const navigate = useNavigate();
+
   const { pokemonTypes } = useSelector((state) => state);
 
   const form ={
@@ -21,6 +25,7 @@ const Create = () => {
 
   return (
     <div>
+       <button onClick={() => navigate(-1)}>Volver</button>
       <p>Formulario para crear pokemones</p>
       <form>
         <div>

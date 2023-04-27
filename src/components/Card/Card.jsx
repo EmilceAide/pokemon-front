@@ -1,13 +1,12 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 
 const Card = ({id, name, image, hp, attack, defense, speed, height, weight, types, detail}) => {
 
+
     return (
         <div>
-             {detail && (
-            <h3>{id}</h3>
-            )}
+            <h3>Id: {id}</h3>
             <h3>Nombre: {name} </h3>
             <img src={image} alt="Avatar del pokemón" />
             {detail && (
@@ -21,6 +20,11 @@ const Card = ({id, name, image, hp, attack, defense, speed, height, weight, type
               </div>
           )}
             <p>Tipo: {types} </p>
+            {!detail && (
+            <Link to={`/detail/${id}`}>
+            <button >{` Ver más + `} </button>
+            </Link>
+            )}
         </div>
     );
 }

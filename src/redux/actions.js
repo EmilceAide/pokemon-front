@@ -18,9 +18,9 @@ export const getPokemons = () => {
   };
 };
 
-export const getPokemon = () => {
+export const getPokemon = (id) => {
   return async (dispatch) => {
-    const data = await getPokemonById(3);
+    const data = await getPokemonById(id);
     dispatch({ type: GET_POKEMON_ID, payload: data.data });
   };
 };

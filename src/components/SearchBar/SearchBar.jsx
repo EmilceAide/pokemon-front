@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPokemonName } from "../../redux/actions";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pokemonName } = useSelector((state) => state);
+  const { pokemon } = useSelector((state) => state);
 
   const [name, setName] = useState("");
 
@@ -15,7 +17,7 @@ const SearchBar = () => {
 
   const onSearch = (name) => {
     dispatch(getPokemonName(name));
-    console.log("Data_Pokemon_Name", pokemonName);
+    navigate(`/detail/${name}`);
   };
 
   return (

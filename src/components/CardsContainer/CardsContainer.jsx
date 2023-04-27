@@ -9,7 +9,7 @@ const CardsContainer = () => {
 
   const [current, setCurrent] = useState(1);
 
-  const amount = 12;
+  const amount = 6;
   const last = current * amount;
   const first = last - amount;
   const data = pokemons.slice(first, last);
@@ -30,6 +30,7 @@ const CardsContainer = () => {
         return (
           <Card
             key={pokemon.id}
+            id={pokemon.id}
             name={pokemon.name}
             image={pokemon.image}
             types={pokemon.types}
