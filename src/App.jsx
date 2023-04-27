@@ -1,11 +1,19 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Landing, Home, Detail, Create } from "./views/index";
+import Nav from "./components/Nav/Nav";
 
 import "./App.css";
 
 function App() {
+
+  const location = useLocation();
+
   return (
     <div className="App">
+
+      {location.pathname !== "/" && (  
+        <Nav />
+      )}
       <Routes>
         <Route path="/" exact element={<Landing />}></Route>
         <Route path="/home" element={<Home />}></Route>
