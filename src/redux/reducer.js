@@ -8,6 +8,7 @@ import {
 const initialState = {
   pokemons: [],
   pokemon: [],
+  pokemonId: [],
   pokemonTypes: [],
 };
 
@@ -17,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, pokemons: action.payload };
 
     case GET_POKEMON_ID:
-      return { pokemon: action.payload };
+      return { pokemonId: action.payload };
 
     case GET_TYPES:
       return { ...state, pokemonTypes: action.payload };

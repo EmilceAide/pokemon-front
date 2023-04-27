@@ -18,11 +18,11 @@ export const getPokemons = () => {
   };
 };
 
-export const getPokemon = (id) => {
-  return async (dispatch) => {
-    const data = await getPokemonById(id);
-    dispatch({ type: GET_POKEMON_ID, payload: data.data });
-  };
+export const getPokemon = (idName) => {
+    return async (dispatch) => {
+      const data = await getPokemonById(idName);
+      dispatch({ type: GET_POKEMON_ID, payload: data.data });
+    };
 };
 
 export const getPokemonName = (name) => {

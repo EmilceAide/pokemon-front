@@ -9,17 +9,17 @@ const Detail = () => {
   let detail = true;
   const { id } = useParams();
   
-  const { pokemon } = useSelector((state) => state);
+  const { pokemonId } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
       dispatch(getPokemon(id));
-    },[id, pokemon]);
+    },[id, pokemonId]);
 
   return (
     <div>
-      {pokemon.map((pokemon) => {
+      {pokemonId.map((pokemon) => {
         return (
            <Card
           key={pokemon.id}
