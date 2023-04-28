@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Landing, Home, Detail, Create, NotFound } from "./views/index";
+import Footer from "./components/Footer/Footer"
 import Nav from "./components/Nav/Nav";
 
 import "./App.css";
@@ -22,6 +23,11 @@ function App() {
         <Route path="/create" element={<Create />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+        {
+          location.pathname !== "/" && (
+            <Footer/>
+          )
+        }
     </div>
   );
 }
