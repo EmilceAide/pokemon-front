@@ -17,3 +17,7 @@ export const getPokemonByName = (name) => {
 export const getPokemonTypes = () => {
     return axios.get(`${url}/types`);
 }
+
+export const postPokemon = (data) =>{
+  return  axios.post(`${url}/pokemons`, data);
+}
