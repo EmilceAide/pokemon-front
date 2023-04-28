@@ -21,7 +21,7 @@ const Card = ({id, name, image, hp, attack, defense, speed, height, weight, type
           )}
             <p>Tipo: {types} </p>
             {!detail && (
-            <Link to={`/detail/${id}`}>
+            <Link to={`/pokemon/${id}`}>
             <button >{` Ver más + `} </button>
             </Link>
             )}

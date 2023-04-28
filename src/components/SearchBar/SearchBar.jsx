@@ -17,7 +17,7 @@ const SearchBar = () => {
 
   const onSearch = (name) => {
     dispatch(getPokemonName(name));
-    navigate(`/detail/${name}`);
+    navigate(`/pokemon/${name}`);
   };
 
   return (
