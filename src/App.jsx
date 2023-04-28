@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Landing, Home, Detail, Create } from "./views/index";
+import { Landing, Home, Detail, Create, NotFound } from "./views/index";
 import Nav from "./components/Nav/Nav";
 
 import "./App.css";
@@ -20,6 +20,7 @@ function App() {
         <Route path="/pokemon/:id" element={<Detail />}></Route>
         <Route path="/pokemons/:page" element={<Home />}></Route>
         <Route path="/create" element={<Create />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
