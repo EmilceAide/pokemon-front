@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Card from "../Card/Card";
 
 const CardsContainer = () => {
   let detail = false;
+  const navigate = useNavigate();
   const { pokemons } = useSelector((state) => state);
 
   const [current, setCurrent] = useState(1);
@@ -19,13 +21,32 @@ const CardsContainer = () => {
     pageNumbers.push(i);
   }
 
+  const goToPage = (page) => {
+    setCurrent(page);
+    navigate(`/pokemons/${page}`); // Cambiar por la ruta correspondiente en tu caso
+  };
+
+  const goToPrevPage = () => {
+    if (current > 1) {
+      goToPage(current - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (first < pokemons.length) {
+      goToPage(current + 1);
+    }
+  };
+
   return (
     <div>
+      <button onClick={goToPrevPage}>Prev</button>
       {pageNumbers.map((pageNum) => (
         <button key={pageNum} onClick={() => setCurrent(pageNum)}>
           {pageNum}
         </button>
       ))}
+      <button onClick={goToNextPage}>Next</button>
       {data.map((pokemon) => {
         return (
           <Card
