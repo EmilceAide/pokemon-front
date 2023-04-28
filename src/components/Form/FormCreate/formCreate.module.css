@@ -1,0 +1,31 @@
+.container{
+display: flex;
+justify-content: space-evenly;
+
+}
+/*Formulario*/
+form {
+    background-color: aquamarine;
+    font-size: 2em;
+    font-family: sans-serif;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form div {
+    display: grid;
+    justify-content: space-around;
+
+    margin: 0 0 10px 0;
+}
+
+/*Contenedor de la Carta*/
+.cardContainer{
+    background-color: bisque;
+}
+.typesContainer {
+    display: flex;
+}
