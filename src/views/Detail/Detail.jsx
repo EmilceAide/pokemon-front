@@ -9,7 +9,7 @@ const Detail = () => {
   let detail = true;
   const { id } = useParams();
   
-  const { pokemonId } = useSelector((state) => state);
+  const { pokemonId, pokemonName } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -17,26 +17,50 @@ const Detail = () => {
       dispatch(getPokemon(id));
     },[id, pokemonId]);
 
+
   return (
     <div>
-      {pokemonId.map((pokemon) => {
-        return (
-           <Card
-          key={pokemon.id}
-          id={pokemon.id}
-          name={pokemon.name} 
-          image={pokemon.image} 
-          hp={pokemon.hp} 
-          attack={pokemon.attack}
-          defense={pokemon.defense} 
-          speed={pokemon.speed} 
-          height={pokemon.height} 
-          weight={pokemon.weight} 
-          types={pokemon.types} 
-          detail={detail}
-           />
-        );
-      })}
+      {isNaN(id)  && (
+        pokemonName.map((pokemon) => {
+          return (
+             <Card
+            key={pokemon.id}
+            id={pokemon.id}
+            name={pokemon.name} 
+            image={pokemon.image} 
+            hp={pokemon.hp} 
+            attack={pokemon.attack}
+            defense={pokemon.defense} 
+            speed={pokemon.speed} 
+            height={pokemon.height} 
+            weight={pokemon.weight} 
+            types={pokemon.types} 
+            detail={detail}
+             />
+          );
+        })
+      )}
+      {id && (
+          pokemonId.map((pokemon) => {
+            return (
+               <Card
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name} 
+              image={pokemon.image} 
+              hp={pokemon.hp} 
+              attack={pokemon.attack}
+              defense={pokemon.defense} 
+              speed={pokemon.speed} 
+              height={pokemon.height} 
+              weight={pokemon.weight} 
+              types={pokemon.types} 
+              detail={detail}
+               />
+            );
+          })
+      )}
+    
     </div>
   );
 };
