@@ -61,6 +61,7 @@ const CardsContainer = () => {
             name={pokemon.name}
             image={pokemon.image}
             types={pokemon.types}
+            Types={pokemon?.Types}
             detail={detail}
           />
         );
