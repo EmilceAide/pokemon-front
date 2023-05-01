@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Card from "../Card/Card";
+import styles from './cardsContainer.module.css'
 
 const CardsContainer = () => {
   let detail = false;
@@ -11,7 +12,7 @@ const CardsContainer = () => {
 
   const [current, setCurrent] = useState(1);
 
-  const amount = 6;
+  const amount = 12;
   const last = current * amount;
   const first = last - amount;
   const data = pokemons.slice(first, last);
@@ -39,7 +40,8 @@ const CardsContainer = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <section>      
       <button onClick={goToPrevPage}>Prev</button>
       {pageNumbers.map((pageNum) => (
         <button key={pageNum} onClick={() => setCurrent(pageNum)}>
@@ -47,6 +49,10 @@ const CardsContainer = () => {
         </button>
       ))}
       <button onClick={goToNextPage}>Next</button>
+      </section>
+
+      <section className={styles.data}>
+        
       {data.map((pokemon) => {
         return (
           <Card
@@ -59,6 +65,8 @@ const CardsContainer = () => {
           />
         );
       })}
+
+      </section>
     </div>
   );
 };

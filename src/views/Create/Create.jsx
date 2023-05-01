@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { getTypes } from "../../redux/actions";
 import FormCreate from "../../components/Form/FormCreate/FormCreate";
+import styles from "./create.module.css";
 
 const Create = () => {
 

@@ -7,7 +7,7 @@ import { getPokemonName } from "../../redux/actions";
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pokemon } = useSelector((state) => state);
+  const { pokemonName } = useSelector((state) => state);
 
   const [name, setName] = useState("");
 

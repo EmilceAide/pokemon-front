@@ -1,8 +1,22 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const Card = ({id, name, image, hp, attack, defense, speed, height, weight, types, detail}) => {
+import styles from './card.module.css'
 
+const Card = ({id, name, image, hp, attack, defense, speed, height, weight, types, detail, formulario}) => {
+    if(formulario){
+     const    {id,
+     name,
+     image,
+     hp,
+     attack,
+     defense,
+     speed,
+     height,
+     weight,
+     types
+    } = formulario;
+}
 
     return (
         <div>
