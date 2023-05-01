@@ -16,12 +16,16 @@ const Detail = () => {
   useEffect(() => {
       dispatch(getPokemon(id));
     },[id, pokemonId]);
-
+   
+    console.log('PokemonId', pokemonId)
+    console.log('PokemonName Types', pokemonName?.map(el => console.log('soy el elemento',el?.Types?.map(element=>{
+      console.log('soy typeName', element.name)
+    }))))
 
   return (
     <div>
       {isNaN(id)  && (
-        pokemonName.map((pokemon) => {
+        pokemonName?.map((pokemon) => {
           return (
              <Card
             key={pokemon.id}
@@ -34,14 +38,15 @@ const Detail = () => {
             speed={pokemon.speed} 
             height={pokemon.height} 
             weight={pokemon.weight} 
-            types={pokemon.types} 
+            types={pokemon.types}
+            Types={pokemon?.Types}
             detail={detail}
              />
           );
         })
       )}
       {id && (
-          pokemonId.map((pokemon) => {
+          pokemonId?.map((pokemon) => {
             return (
                <Card
               key={pokemon.id}
@@ -54,7 +59,8 @@ const Detail = () => {
               speed={pokemon.speed} 
               height={pokemon.height} 
               weight={pokemon.weight} 
-              types={pokemon.types} 
+              types={pokemon.types}
+              Types={pokemon?.Types}
               detail={detail}
                />
             );

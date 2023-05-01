@@ -3,20 +3,8 @@ import { Link } from "react-router-dom";
 
 import styles from './card.module.css'
 
-const Card = ({id, name, image, hp, attack, defense, speed, height, weight, types, detail, formulario}) => {
-    if(formulario){
-     const    {id,
-     name,
-     image,
-     hp,
-     attack,
-     defense,
-     speed,
-     height,
-     weight,
-     types
-    } = formulario;
-}
+const Card = ({id, name, image, hp, attack, defense, speed, height, weight, Types, types, detail}) => {
+
 
     return (
         <div>
@@ -34,6 +22,7 @@ const Card = ({id, name, image, hp, attack, defense, speed, height, weight, type
               </div>
           )}
             <p>Tipo: {types} </p>
+            <p>Tipo: {Types?.map(type=> `${type.name} `)}</p>
             {!detail && (
             <Link to={`/pokemon/${id}`}>
             <button >{` Ver más + `} </button>
