@@ -1,10 +1,12 @@
 import React from 'react';
 
+import styles from './footer.module.css'
+
 const Footer = () => {
     return (
-        <div>
+        <div className={styles.container}>
            <p>Emilce Aide Toledo</p>
-           <p>{new Date().getFullYear()}</p>
+           <p>-  {new Date().getFullYear()}</p>
         </div>
     );
 }
