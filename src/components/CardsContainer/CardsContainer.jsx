@@ -15,10 +15,10 @@ const CardsContainer = () => {
   const amount = 12;
   const last = current * amount;
   const first = last - amount;
-  const data = pokemons.slice(first, last);
+  const data = pokemons?.slice(first, last);
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(pokemons.length / amount); i++) {
+  for (let i = 1; i <= Math.ceil(pokemons?.length / amount); i++) {
     pageNumbers.push(i);
   }
 
@@ -43,7 +43,7 @@ const CardsContainer = () => {
     <div className={styles.container}>
       <section>      
       <button onClick={goToPrevPage}>Prev</button>
-      {pageNumbers.map((pageNum) => (
+      {pageNumbers?.map((pageNum) => (
         <button key={pageNum} onClick={() => setCurrent(pageNum)}>
           {pageNum}
         </button>
@@ -53,7 +53,7 @@ const CardsContainer = () => {
 
       <section className={styles.data}>
         
-      {data.map((pokemon) => {
+      {data?.map((pokemon) => {
         return (
           <Card
             key={pokemon.id}
