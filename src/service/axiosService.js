@@ -11,7 +11,7 @@ export const getPokemonById = (id) => {
 };
 
 export const getPokemonByName = (name) => {
-    return axios.get(`${url}/pokemons/${name}`);
+    return axios.get(`${url}/pokemons?name=${name}`);
 }
 
 export const getPokemonTypes = () => {
