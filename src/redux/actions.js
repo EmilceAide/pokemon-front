@@ -9,8 +9,11 @@ import {
   GET_POKEMON_ID,
   GET_TYPES,
   GET_POKEMON_NAME,
+  POKEMON_ORDER,
+  POKEMON_FILTER
 } from "./actions-types";
 
+//*Pokemons data
 export const getPokemons = () => {
   return async (dispatch) => {
     const data = await getAllPokemons();
@@ -19,10 +22,10 @@ export const getPokemons = () => {
 };
 
 export const getPokemon = (id) => {
-    return async (dispatch) => {
-      const data = await getPokemonById(id);
-      dispatch({ type: GET_POKEMON_ID, payload: data.data });
-    };
+  return async (dispatch) => {
+    const data = await getPokemonById(id);
+    dispatch({ type: GET_POKEMON_ID, payload: data.data });
+  };
 };
 
 export const getPokemonName = (name) => {
@@ -36,5 +39,20 @@ export const getTypes = () => {
   return async (dispatch) => {
     const data = await getPokemonTypes();
     dispatch({ type: GET_TYPES, payload: data.data });
+  };
+};
+
+//* Order and filter
+export const orderPokemon = (option) => {
+  return (dispatch) => {
+    console.log('action', option)
+    dispatch({ type: POKEMON_ORDER, payload: option });
+  };
+};
+
+export const filterPokemon = (option) => {
+  return (dispatch) => {
+    console.log('action', option)
+    dispatch({ type: POKEMON_FILTER, payload: option });
   };
 };
