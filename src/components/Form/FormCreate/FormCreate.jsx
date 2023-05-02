@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { postPokemon } from "../../../service/axiosService";
+import { validation } from '../../../models/validation'
 import styles from "./formCreate.module.css";
 import Card from "../../Card/Card";
 
@@ -42,12 +43,8 @@ const FormCreate = () => {
   const changeHandler = (e) => {
     const property = e.target.name;
     const value = e.target.value;
-
-    validate({ ...form, [property]: value });
+    setErrors(validation({ ...form, [property]: value }));
     setForm({ ...form, [property]: value });
-  };
-
-  const validate = (form) => {
   };
   
   const handleOnCheckbox = (e) => {
@@ -86,6 +83,12 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="name"
           />
+            <p>
+            {errors.name && (
+              <p style={{ color: "red" }}>{errors.name}</p>
+            )}
+          </p>
+
         </div>
 
         <div>
@@ -106,6 +109,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="hp"
           />
+          <p>
+            {errors.hp && (
+              <p style={{ color: "red" }}>{errors.hp}</p>
+            )}
+          </p>
         </div>
 
         <div>
@@ -116,6 +124,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="attack"
           />
+           <p>
+            {errors.attack && (
+              <p style={{ color: "red" }}>{errors.attack}</p>
+            )}
+          </p>
         </div>
 
         <div>
@@ -126,6 +139,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="defense"
           />
+           <p>
+            {errors.defense && (
+              <p style={{ color: "red" }}>{errors.defense}</p>
+            )}
+          </p>
         </div>
 
         <div>
@@ -136,6 +154,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="speed"
           />
+           <p>
+            {errors.speed && (
+              <p style={{ color: "red" }}>{errors.speed}</p>
+            )}
+          </p>
         </div>
 
         <div>
@@ -146,6 +169,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="height"
           />
+           <p>
+            {errors.height && (
+              <p style={{ color: "red" }}>{errors.height}</p>
+            )}
+          </p>
         </div>
 
         <div>
@@ -156,6 +184,11 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="weight"
           />
+           <p>
+            {errors.weight && (
+              <p style={{ color: "red" }}>{errors.weight}</p>
+            )}
+          </p>
         </div>
 
         <div className={styles.typesContainer}>
@@ -174,6 +207,11 @@ const FormCreate = () => {
               </div>
             );
           })}
+           <p>
+            {errors.types && (
+              <p style={{ color: "red" }}>{errors.types}</p>
+            )}
+          </p>
         </div>
 
         <button type="submit">Enviar</button>
