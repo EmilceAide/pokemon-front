@@ -8,13 +8,14 @@ import Card from "../../Card/Card";
 
 const FormCreate = () => {
   let detail = true;
-  let formulario =true;
+
   const navigate = useNavigate();
   const { pokemonTypes } = useSelector((state) => state);
 
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [route, setRoute] = useState("");
+  const [route, setRoute] = useState(0);
+  const [typeSelect, setTypeSelect] = useState([]);
   const [form, setForm] = useState({
     name: "",
     image: "",
@@ -24,7 +25,7 @@ const FormCreate = () => {
     speed: 0,
     height: 0,
     weight: 0,
-    types: ["normal", "grass"],
+    types: [],
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -35,7 +36,7 @@ const FormCreate = () => {
     speed: 0,
     height: 0,
     weight: 0,
-    // types: []
+    types: []
   });
 
   const changeHandler = (e) => {
@@ -47,26 +48,29 @@ const FormCreate = () => {
   };
 
   const validate = (form) => {
-    {
-      /**momentaneo */
-    }
-    let regex = /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/gm;
-
-    if (regex.test(form.hp) && form.hp !== undefined && form.hp !== "") {
-      console.log("Es mayor a 0");
+  };
+  
+  const handleOnCheckbox = (e) => {
+    const {value, checked} =  e.target;
+    if(checked){
+      setTypeSelect([...typeSelect, value])
+      setForm({ ...form, types:[...typeSelect, value] })
+    } else{
+      setTypeSelect(typeSelect.filter(el => el !==value))
+      setForm({ ...form, types: typeSelect.filter(el => el !==value)})
     }
   };
+  
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(form);
     postPokemon(form)
       .then((res) => {
         if (res.status === 201) {
           setSuccess(true);
-          setRoute(res.data.name);
+          setRoute(res.data.id);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setFailed(true);
       });
   };
@@ -102,8 +106,6 @@ const FormCreate = () => {
             onChange={changeHandler}
             name="hp"
           />
-          {/**momentaneo */}
-          {/* {errors.hp && <p>{errors.hp}</p>} */}
         </div>
 
         <div>
@@ -158,10 +160,17 @@ const FormCreate = () => {
 
         <div className={styles.typesContainer}>
           <label>Tipo: </label>
-          {pokemonTypes.map((type) => {
+          {pokemonTypes?.map((type) => {
             return (
-              <div key={type.id}>
-                <h5>{type.name}</h5>
+              <div className={styles.checkbox} key={type.id}>
+                <input
+                  type="checkbox"
+                  name="types"
+                  value={type.name}
+                  id={type.name}
+                  onChange={handleOnCheckbox}
+                />
+                <label for={type.name}>{type.name}</label>
               </div>
             );
           })}

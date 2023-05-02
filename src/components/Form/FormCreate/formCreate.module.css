@@ -5,7 +5,7 @@ justify-content: space-evenly;
 }
 /*Formulario*/
 form {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     font-size: 2em;
     font-family: sans-serif;
     
@@ -27,5 +27,13 @@ form div {
     background-color: bisque;
 }
 .typesContainer {
+    color: #000;
+    width: 30%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox {
     display: flex;
 }
