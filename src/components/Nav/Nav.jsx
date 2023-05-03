@@ -7,14 +7,15 @@ import styles from './nav.module.css'
 const Nav = () => {
   return (
     <div className={styles.container}>
-   
+        <div>
         <Link to="/home">
-          <button> HOME </button>
+          <button className={styles.btnView}> HOME </button>
         </Link>
 
         <Link to="/create">
-          <button> AGREGAR POKEMON </button>
+          <button className={styles.btnView}> AGREGAR POKEMON </button>
         </Link>
+        </div>
 
         <div>
           <SearchBar />

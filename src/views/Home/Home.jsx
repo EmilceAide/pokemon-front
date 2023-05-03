@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { getPokemons, orderPokemon, filterPokemon } from "../../redux/actions";
+import styles from './home.module.css'
 
 const Home = () => {
 

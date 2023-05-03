@@ -3,11 +3,23 @@ import { Link } from "react-router-dom";
 
 import styles from "./card.module.css";
 
-const Card = ({ id, name, image, hp, attack, defense, speed, height, weight, Types, types, detail}) => {
-
+const Card = ({
+  id,
+  name,
+  image,
+  hp,
+  attack,
+  defense,
+  speed,
+  height,
+  weight,
+  Types,
+  types,
+  detail,
+}) => {
   let arrType = [];
   if (types && !Types) {
-    arrType = typeof types === 'string' ? types.split(',') : [];
+    arrType = typeof types === "string" ? types.split(",") : [];
   }
   if (Types) {
     Types?.map((type) => arrType.push(type.name));
@@ -15,6 +27,13 @@ const Card = ({ id, name, image, hp, attack, defense, speed, height, weight, Typ
 
   return (
     <div className={styles.container}>
+      {!detail && (
+        <div className={styles.btn_container}>
+        <Link to={`/pokemon/${id}`}>
+          <button className={styles.btn}>{` Ver más + `} </button>
+        </Link>
+        </div>
+      )}
       {detail && <h3 className={styles.id}>Id: {id}</h3>}
       <img src={image} alt="Avatar del pokemón" className={styles.image} />
       <h3 className={styles.name}>{name} </h3>
@@ -28,14 +47,11 @@ const Card = ({ id, name, image, hp, attack, defense, speed, height, weight, Typ
           <p className={styles.weight}>Peso: {weight} </p>
         </div>
       )}
-      {arrType.map((el) => {
-        return (<p>Tipo: {el}</p>)
-      })}
-      {!detail && (
-        <Link to={`/pokemon/${id}`}>
-          <button>{` Ver más + `} </button>
-        </Link>
-      )}
+      <div className={styles.typesContainer}>
+        {arrType.map((el) => {
+          return <p>Tipo: {el}</p>;
+        })}
+      </div>
     </div>
   );
 };

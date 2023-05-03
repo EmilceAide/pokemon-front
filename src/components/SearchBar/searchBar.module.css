@@ -1,0 +1,17 @@
+div input {
+    height: 2em;
+    padding: 0 0 0 10px;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+}
+.btn {
+    background-color: #CBE4DE ;
+    height: 2em;
+    margin: 5px;
+    padding: 0 10px;
+    font-size: 1.4em;
+    font-family: "Lato";
+    font-weight: 500;
+
+}

@@ -1,3 +1,43 @@
-div img {
-    width: 150px;
+.container{
+    border: 1px solid #000;
+    background-image: url('../../assets/squares.png');
+    margin: 10px;
+    padding: 0 0 10px 0;
+
+    display: grid;
+    justify-items: center;
+}
+.image {
+    width: 200px;
+    margin: 10px;
+} 
+
+.name {
+    font-size: 2em;
+    text-transform: capitalize;
+    font-family: "Skranji";
+}
+.typesContainer{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+.typesContainer p{
+    background-color: rgb(4, 47, 32);
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: aliceblue;
+    text-transform: capitalize;
+}
+.btn_container{
+    background-color: rgb(74, 25, 25);
+    display: flex;
+    justify-content:flex-end;
+}
+.btn{
+    background-color: rgb(61, 61, 203);
 }
