@@ -1,16 +1,62 @@
 .container{
-    background-color: #fff;
+    padding: 2px 10px;
     font-size: var(--text-small);
-    font-family: "Lato";
+    font-family: var(--font-family-primary);
     font-weight: 500;
+    width: 500px;
+    display: flex;
+    justify-content: center;
 }
-.container form input {
-    border: 1px solid var(--color-primario-claro);
+.container form {
+    margin: 0 0 60px 0;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
 }
-.container form input:focus{
-    background-color: var(--color-secundario-claro);
-}
-.container form section div {
+.section_two div{
     display: flex;
     flex-direction: column;
+}
+.section_one .typesContainer{
+    display: flex;
+    flex-direction: column;
+
+}
+.container form input {
+    border: 1px solid var(--color-secundary-strong);
+}
+.container form input:focus{
+    background-color: var(--color-secundary-light);
+}
+
+.checkbox{
+   display: flex;
+   
+}
+.checkbox label {
+    height: 2em;
+    width: 150px;
+    margin: 0 15px;
+    border: 1px solid #000;
+   text-transform: capitalize;
+
+   display: flex;
+   justify-content:flex-start;
+   align-items: center;
+}
+.checkbox input{
+    margin: 0 5px;
+}
+.section_tree{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section_tree button{
+    background-color: var(--color-secundary-light);
+    border: 1px solid var(--color-primary-strong);
+    padding: 0 20px;
+    margin: 5px 0 0 0;
+    font-size: var(--text-small);
+    font-family: var(--font-family-primary);
 }

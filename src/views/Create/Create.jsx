@@ -11,13 +11,10 @@ import styles from "./create.module.css";
 
 const Create = () => {
   let detail = true;
+  let created = true; 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getTypes());
-  }, []);
-
+  
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
   const [route, setRoute] = useState(0);
@@ -44,6 +41,10 @@ const Create = () => {
     weight: 0,
     types: [],
   });
+  
+    useEffect(() => {
+      dispatch(getTypes());
+    }, []);
 
   const changeHandler = (e) => {
     const property = e.target.name;
@@ -93,7 +94,6 @@ const Create = () => {
 
       <section className={styles.cardContainer}>
         <Card
-          id={1}
           name={form.name}
           image={form.image}
           hp={form.hp}
@@ -104,6 +104,7 @@ const Create = () => {
           weight={form.weight}
           types={form.types}
           detail={detail}
+          created={created}
         />
         <div>
           {success

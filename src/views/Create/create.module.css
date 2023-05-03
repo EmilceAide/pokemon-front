@@ -3,9 +3,7 @@
     margin: 0;
 }
 .createContainer{
-    width: 80vw;
     margin: 10px 10%;
-    background-color: aquamarine;
 
     display: flex;
     

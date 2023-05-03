@@ -16,6 +16,7 @@ const Card = ({
   Types,
   types,
   detail,
+  created
 }) => {
   let arrType = [];
   if (types && !Types) {
@@ -27,15 +28,20 @@ const Card = ({
 
   return (
     <div className={styles.container}>
-      {!detail && (
-        <div className={styles.btn_container}>
-        <Link to={`/pokemon/${id}`}>
-          <button className={styles.btn}>{` Ver más + `} </button>
-        </Link>
-        </div>
-      )}
+      {
+        !created &&(<div>
+          {!detail && (
+             <div className={styles.btn_container}>
+             <Link to={`/pokemon/${id}`}>
+               <button className={styles.btn}>{` Ver más + `} </button>
+             </Link>
+             </div>
+           )}
       {detail && <h3 className={styles.id}>Id: {id}</h3>}
-      <img src={image} alt="Avatar del pokemón" className={styles.image} />
+        </div>
+        )
+      }
+      {image &&  <img src={image} alt="Avatar del pokemón" className={styles.image} />}
       <h3 className={styles.name}>{name} </h3>
       {detail && (
         <div>

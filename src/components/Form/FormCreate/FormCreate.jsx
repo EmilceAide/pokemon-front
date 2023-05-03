@@ -16,6 +16,33 @@ const FormCreate = ({
     <div className={styles.container}>
       <form onSubmit={submitHandler}>
         <section className={styles.section_one}>
+          <div className={styles.typesContainer}>
+            <label>Tipo: </label>
+            <div>
+              {pokemonTypes?.map((type) => {
+                return (
+                  <div className={styles.checkbox} key={type.id}>
+                    <label for={type.name}>
+                      <input
+                        type="checkbox"
+                        name="types"
+                        value={type.name}
+                        id={type.name}
+                        onChange={handleOnCheckbox}
+                      />
+                      {type.name}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+            <p>
+              {errors.types && <p style={{ color: "red" }}>{errors.types}</p>}
+            </p>
+          </div>
+        </section>
+
+        <section className={styles.section_two}>
           <div>
             <label>Nombre: </label>
             <input
@@ -24,9 +51,9 @@ const FormCreate = ({
               onChange={changeHandler}
               name="name"
             />
-            {/* <p>
+            <p>
               {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
-            </p> */}
+            </p>
           </div>
 
           <div>
@@ -36,6 +63,7 @@ const FormCreate = ({
               value={form.image}
               onChange={changeHandler}
               name="image"
+              placeholder="https://imagenpokemon.com/image.pg"
             />
           </div>
 
@@ -47,7 +75,11 @@ const FormCreate = ({
               onChange={changeHandler}
               name="hp"
             />
-            {/* <p>{errors.hp && <p style={{ color: "red" }}>{errors.hp}</p>}</p> */}
+            <p>
+              {errors.hp === 0
+                ? null
+                : errors.hp && <p style={{ color: "red" }}>{errors.hp}</p>}
+            </p>
           </div>
 
           <div>
@@ -58,9 +90,13 @@ const FormCreate = ({
               onChange={changeHandler}
               name="attack"
             />
-            {/* <p>
-              {errors.attack && <p style={{ color: "red" }}>{errors.attack}</p>}
-            </p> */}
+            <p>
+              {errors.attack === 0
+                ? null
+                : errors.attack && (
+                    <p style={{ color: "red" }}>{errors.attack}</p>
+                  )}
+            </p>
           </div>
 
           <div>
@@ -71,11 +107,13 @@ const FormCreate = ({
               onChange={changeHandler}
               name="defense"
             />
-            {/* <p>
-              {errors.defense && (
-                <p style={{ color: "red" }}>{errors.defense}</p>
-              )}
-            </p> */}
+            <p>
+              {errors.defense === 0
+                ? null
+                : errors.defense && (
+                    <p style={{ color: "red" }}>{errors.defense}</p>
+                  )}
+            </p>
           </div>
 
           <div>
@@ -86,9 +124,13 @@ const FormCreate = ({
               onChange={changeHandler}
               name="speed"
             />
-            {/* <p>
-              {errors.speed && <p style={{ color: "red" }}>{errors.speed}</p>}
-            </p> */}
+            <p>
+              {errors.speed === 0
+                ? null
+                : errors.speed && (
+                    <p style={{ color: "red" }}>{errors.speed}</p>
+                  )}
+            </p>
           </div>
 
           <div>
@@ -99,9 +141,13 @@ const FormCreate = ({
               onChange={changeHandler}
               name="height"
             />
-            {/* <p>
-              {errors.height && <p style={{ color: "red" }}>{errors.height}</p>}
-            </p> */}
+            <p>
+              {errors.height === 0
+                ? null
+                : errors.height && (
+                    <p style={{ color: "red" }}>{errors.height}</p>
+                  )}
+            </p>
           </div>
 
           <div>
@@ -112,35 +158,17 @@ const FormCreate = ({
               onChange={changeHandler}
               name="weight"
             />
-            {/* <p>
-              {errors.weight && <p style={{ color: "red" }}>{errors.weight}</p>}
-            </p> */}
+            <p>
+              {errors.weight === 0
+                ? null
+                : errors.weight && (
+                    <p style={{ color: "red" }}>{errors.weight}</p>
+                  )}
+            </p>
           </div>
-
-        <div className={styles.typesContainer}>
-          <label>Tipo: </label>
-          {pokemonTypes?.map((type) => {
-            return (
-              <div className={styles.checkbox} key={type.id}>
-                <input
-                  type="checkbox"
-                  name="types"
-                  value={type.name}
-                  id={type.name}
-                  onChange={handleOnCheckbox}
-                  />
-                <label for={type.name}>{type.name}</label>
-              </div>
-            );
-          })}
-          {/* <p>
-            {errors.types && <p style={{ color: "red" }}>{errors.types}</p>}
-          </p> */}
-        </div>
+          <section className={styles.section_tree}>
+            <button type="submit">Enviar</button>
           </section>
-
-        <section className={styles.section_two}>
-        <button type="submit">Enviar</button>
         </section>
       </form>
     </div>
