@@ -6,12 +6,12 @@ div input {
     outline: none;
 }
 .btn {
-    background-color: #CBE4DE ;
+    background-color: var(--color-secundary-light) ;
     height: 2em;
     margin: 5px;
     padding: 0 10px;
     font-size: 1.4em;
-    font-family: "Lato";
+    font-family: var(--font-family-primary);
     font-weight: 500;
 
 }

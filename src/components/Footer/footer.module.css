@@ -1,5 +1,5 @@
 .container {
-    background-color: #2C3333;
+    background-color: var(--color-primary-strong);
     position: absolute;
     bottom: 0px;
     width: 100vw;
@@ -11,8 +11,9 @@
 }
 
 .container p {
-    font-size: 1.5em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--text-x-small);
+    font-family: var(--font-family-primary);
     font-weight:400;
+    margin: 0 10px 0 0;
     color:#dadada;
 }

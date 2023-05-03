@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Skranji:wght@400;700&display=swap');
+:root{
+  --color-primary-strong: #2C3333;
+  --color-secundary-strong: #2E4F4F;
+  --color-primary-light: #0E8388;
+  --color-secundary-light: #CBE4DE;
+  --font-family-primary: "Lato";
+  --font-family-secundary:"Skranji";
+  --text-x-small: 1.2em;
+  --text-small: 1.5em;
+  --text-medium: 2em;
+  --text-large:3em;
+}
 * {
   padding: 0;
   margin: 0;
 }
-
 body {
   height: 100vh;
   font-size: 62.5%;
@@ -23,3 +34,4 @@ button {
 a:link, a:visited, a:active {
   text-decoration:none;
 }
+

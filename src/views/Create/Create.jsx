@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { postPokemon } from "../../service/axiosService";
-import { validation } from '../../models/validation'
+import { validation } from "../../models/validation";
 import { getTypes } from "../../redux/actions";
-import Card from '../../components/Card/Card'
+import Card from "../../components/Card/Card";
 import FormCreate from "../../components/Form/FormCreate/FormCreate";
 import styles from "./create.module.css";
 
 const Create = () => {
-
+  let detail = true;
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());
   }, []);
-
-  let detail = true;
-
-  // const navigate = useNavigate();
-  
 
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -47,28 +42,27 @@ const Create = () => {
     speed: 0,
     height: 0,
     weight: 0,
-    types: []
+    types: [],
   });
 
-  
   const changeHandler = (e) => {
     const property = e.target.name;
     const value = e.target.value;
     setErrors(validation({ ...form, [property]: value }));
     setForm({ ...form, [property]: value });
   };
-  
+
   const handleOnCheckbox = (e) => {
-    const {value, checked} =  e.target;
-    if(checked){
-      setTypeSelect([...typeSelect, value])
-      setForm({ ...form, types:[...typeSelect, value] })
-    } else{
-      setTypeSelect(typeSelect.filter(el => el !==value))
-      setForm({ ...form, types: typeSelect.filter(el => el !==value)})
+    const { value, checked } = e.target;
+    if (checked) {
+      setTypeSelect([...typeSelect, value]);
+      setForm({ ...form, types: [...typeSelect, value] });
+    } else {
+      setTypeSelect(typeSelect.filter((el) => el !== value));
+      setForm({ ...form, types: typeSelect.filter((el) => el !== value) });
     }
   };
-  
+
   const submitHandler = (e) => {
     e.preventDefault();
     postPokemon(form)
@@ -83,23 +77,21 @@ const Create = () => {
       });
   };
 
-
   return (
-    <div className={styles.container}>
-       {/* <button onClick={() => navigate(-1)}>Volver</button>
+    <div className={styles.createContainer}>
+      {/* <button onClick={() => navigate(-1)}>Volver</button>
       <p>Crea tu pokemón</p> */}
-      <div className={styles.formContainer}>
-      <FormCreate 
-      form={form}
-      errors={errors}
-      submitHandler={submitHandler} 
-      changeHandler={changeHandler} 
-      handleOnCheckbox={handleOnCheckbox}
-      /> 
-      </div>
-      
-      
-      <div className={styles.cardContainer}>
+      <section className={styles.formContainer}>
+        <FormCreate
+          form={form}
+          errors={errors}
+          submitHandler={submitHandler}
+          changeHandler={changeHandler}
+          handleOnCheckbox={handleOnCheckbox}
+        />
+      </section>
+
+      <section className={styles.cardContainer}>
         <Card
           id={1}
           name={form.name}
@@ -125,8 +117,7 @@ const Create = () => {
           {failed &&
             `Intentalo nuevamente. El pokemón ${form.name} no fue creado`}
         </div>
-      </div>
-
+      </section>
     </div>
   );
 };
