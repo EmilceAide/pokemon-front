@@ -5,6 +5,7 @@ import {
   GET_POKEMON_NAME,
   POKEMON_ORDER,
   POKEMON_FILTER,
+  POKEMON_TYPES,
 } from "./actions-types";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   pokemonName: [],
   pokemonId: [],
   pokemonTypes: [],
+  pokemonsTypes: [],
   pokemonsFilter: [],
 };
 
@@ -34,23 +36,26 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload === "ASC") {
         dataOrder = dataOrder.concat(
           state.pokemons?.sort((a, b) => {
-           return a.id - b.id;
+            return a.id - b.id;
           })
         );
       }
       if (action.payload === "DESC") {
         dataOrder = dataOrder = state.pokemons?.sort((a, b) => {
-         return b.id - a.id;
+          return b.id - a.id;
         });
       }
       if (action.payload === "alphabetical") {
-        dataOrder = dataOrder.concat(state.pokemons?.sort((a, b) => {
-          return a.name.toLowerCase().localeCompare(b.name.toLowerCase())}));
+        dataOrder = dataOrder.concat(
+          state.pokemons?.sort((a, b) => {
+            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+          })
+        );
       }
       if (action.payload === "attack") {
         dataOrder = dataOrder.concat(
           state.pokemons?.sort((a, b) => {
-          return a.attack - b.attack;
+            return a.attack - b.attack;
           })
         );
       }
@@ -59,15 +64,40 @@ const rootReducer = (state = initialState, action) => {
     case POKEMON_FILTER:
       let dataFilter = [];
       if (action.payload === "API") {
-        dataFilter = state.pokemons.filter((el) => el.created === false);
-        console.log('API =>',dataFilter)
+        dataFilter = state.pokemons?.filter((el) => el.created === false);
+        console.log("API =>", dataFilter);
       }
       if (action.payload === "DB") {
-        dataFilter = state.pokemons.filter((el) => el.created === true);
-        console.log('DB =>',dataFilter)
+        dataFilter = state.pokemons?.filter((el) => el.created === true);
+        console.log("DB =>", dataFilter);
       }
-
       return { pokemonsFilter: dataFilter };
+
+    case POKEMON_TYPES:
+      let dataTypes = [];
+      let database = state.pokemons?.filter((el) => el.created === true);
+      console.log(database, 'database')
+      let dataApi = state.pokemons?.filter((el) => el.created === false);
+      console.log(dataApi, 'dataApi')
+      dataApi?.filter((el) => {
+        if (typeof el.types === "string") {
+          const arr = el.types.split(",");
+          arr.map(element =>{
+            if(element === action.payload){
+              dataTypes.push(el)
+            }
+          })
+        }
+      });
+      database?.filter((el) => {
+        el.Types.map(element => {
+          if(element.name === action.payload){
+            dataTypes.push(el)
+          }
+        })
+        });
+      console.log('reducer', dataTypes)
+      return { pokemonsTypes: dataTypes };
 
     default:
       return { ...state };
