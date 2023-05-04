@@ -10,8 +10,6 @@ import FormCreate from "../../components/Form/FormCreate/FormCreate";
 import styles from "./create.module.css";
 
 const Create = () => {
-  let detail = true;
-  let created = true; 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -79,9 +77,10 @@ const Create = () => {
   };
 
   return (
-    <div className={styles.createContainer}>
+    <div className={styles.container}>
       {/* <button onClick={() => navigate(-1)}>Volver</button>
       <p>Crea tu pokemón</p> */}
+      <div className={styles.createContainer}>
       <section className={styles.formContainer}>
         <FormCreate
           form={form}
@@ -93,19 +92,19 @@ const Create = () => {
       </section>
 
       <section className={styles.cardContainer}>
-        <Card
-          name={form.name}
-          image={form.image}
-          hp={form.hp}
-          attack={form.attack}
-          defense={form.defense}
-          speed={form.speed}
-          height={form.height}
-          weight={form.weight}
-          types={form.types}
-          detail={detail}
-          created={created}
-        />
+        <div className={styles.detail}>
+        <h3>Nombre: {form.name}</h3>
+        {form.image && 
+        <img src={form.image} alt="Imagen de pokemón" />
+        }
+        <p>Vida: {form.hp}</p>
+        <p>Ataque: {form.attack}</p>
+        <p>Defensa: {form.defense}</p>
+        <p>Velocidad: {form.speed}</p>
+        <p>Altura: {form.height}</p>
+        <p>Peso: {form.weight}</p>
+        </div>
+
         <div>
           {success
             ? `Se creo exitosamente el pokemon ${form.name}` && (
@@ -118,7 +117,10 @@ const Create = () => {
           {failed &&
             `Intentalo nuevamente. El pokemón ${form.name} no fue creado`}
         </div>
+
       </section>
+
+      </div>
     </div>
   );
 };
