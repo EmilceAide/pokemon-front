@@ -8,8 +8,8 @@
   --font-family-secundary:"Skranji";
   --text-x-small: 1.2em;
   --text-small: 1.5em;
-  --text-medium: 2em;
-  --text-large:3em;
+  --text-medium: 1.8em;
+  --text-large:2em;
 }
 * {
   padding: 0;
