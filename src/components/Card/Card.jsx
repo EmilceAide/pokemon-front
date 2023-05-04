@@ -27,7 +27,7 @@ const Card = ({
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} key={id}>
       {
         !created &&(<div>
           {!detail && (
@@ -54,8 +54,10 @@ const Card = ({
         </div>
       )}
       <div className={styles.typesContainer}>
-        {arrType.map((el) => {
-          return <p>Tipo: {el}</p>;
+        {arrType.map((el, i) => {
+          return(
+             <p key={i}>Tipo: {el}</p>
+             );
         })}
       </div>
     </div>

@@ -13,7 +13,7 @@ const initialState = {
   pokemonName: [],
   pokemonId: [],
   pokemonTypes: [],
-  pokemonsTypes: [],
+  typesData: [],
   pokemonsFilter: [],
 };
 
@@ -23,13 +23,13 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, pokemons: action.payload };
 
     case GET_POKEMON_ID:
-      return { pokemonId: action.payload };
+      return {...state,  pokemonId: action.payload };
 
     case GET_TYPES:
       return { ...state, pokemonTypes: action.payload };
 
     case GET_POKEMON_NAME:
-      return { pokemonName: action.payload };
+      return {...state,  pokemonName: action.payload };
 
     case POKEMON_ORDER:
       let dataOrder = [];
@@ -59,7 +59,7 @@ const rootReducer = (state = initialState, action) => {
           })
         );
       }
-      return { pokemons: dataOrder };
+      return {...state,  pokemons: dataOrder };
 
     case POKEMON_FILTER:
       let dataFilter = [];
@@ -71,33 +71,33 @@ const rootReducer = (state = initialState, action) => {
         dataFilter = state.pokemons?.filter((el) => el.created === true);
         console.log("DB =>", dataFilter);
       }
-      return { pokemonsFilter: dataFilter };
+      return { ...state, pokemonsFilter: dataFilter };
 
     case POKEMON_TYPES:
       let dataTypes = [];
       let database = state.pokemons?.filter((el) => el.created === true);
-      console.log(database, 'database')
+      console.log(database, "database");
       let dataApi = state.pokemons?.filter((el) => el.created === false);
-      console.log(dataApi, 'dataApi')
+      console.log(dataApi, "dataApi");
       dataApi?.filter((el) => {
         if (typeof el.types === "string") {
           const arr = el.types.split(",");
-          arr.map(element =>{
-            if(element === action.payload){
-              dataTypes.push(el)
+          arr.map((element) => {
+            if (element === action.payload) {
+              dataTypes.push(el);
             }
-          })
+          });
         }
       });
       database?.filter((el) => {
-        el.Types.map(element => {
-          if(element.name === action.payload){
-            dataTypes.push(el)
+        el.Types.map((element) => {
+          if (element.name === action.payload) {
+            dataTypes.push(el);
           }
-        })
         });
-      console.log('reducer', dataTypes)
-      return { pokemonsTypes: dataTypes };
+      });
+      console.log("reducer", dataTypes);
+      return {...state, typesData: dataTypes };
 
     default:
       return { ...state };
