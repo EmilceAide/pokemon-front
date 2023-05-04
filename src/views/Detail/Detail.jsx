@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getPokemon } from "../../redux/actions";
 import Card from "../../components/Card/Card";
+import styles from "./detail.module.css"
 
 const Detail = () => {
   let detail = true;
@@ -23,7 +24,7 @@ const Detail = () => {
     }))))
 
   return (
-    <div>
+    <div className={styles.container}>
       {isNaN(id)  && (
         pokemonName?.map((pokemon) => {
           return (

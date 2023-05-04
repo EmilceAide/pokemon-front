@@ -1,0 +1,8 @@
+.container{
+    height: calc(100vh - 80px);
+    background-image: url('../../assets/light.png');
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
