@@ -10,6 +10,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { pokemons, pokemonTypes, pokemonsFilter, typesData } = useSelector((state) => state);
   const [typeState, setTypeState] = useState('');
+  const [dataPokemonFilter, setDataPokemonFilter] = useState(false);
+  const [dataPokemonTypes, setDataPokemonTypes] = useState(false);
 
   useEffect(() => {
     dispatch(getPokemons());
@@ -17,7 +19,18 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTypes());
   }, []);
-
+   
+  const changeDataFilter = (option) => {
+    setDataPokemonFilter(true)
+    dispatch(filterPokemon(option))
+    console.log('info', dataPokemonFilter)
+  }
+ 
+  const changeDataTypes = (typeState) => {
+    setDataPokemonTypes(true)
+    dispatch(typePokemon(typeState))
+    console.log('info', dataPokemonTypes)
+  }
 
   return (
     <div className={styles.container}>
@@ -35,25 +48,36 @@ const Home = () => {
         <button onClick={() => dispatch(orderPokemon("attack"))}>
           PODER DE ATAQUE
         </button>
-        <button onClick={() => dispatch(filterPokemon("API"))}>
+        <button onClick={() =>changeDataFilter("API")}>
           API
         </button>
-        <button onClick={() => dispatch(filterPokemon("DB"))}>
+        <button onClick={() =>changeDataFilter("DB")}>
           DB
         </button>
-        <label>Tipo: </label>
         <select onChange={(e)=> setTypeState(e.target.value)}>
+        <option>Tipo: </option>
           {pokemonTypes.map(el => {
           return <option key={el.id} value={el.name}>{el.name}</option>
           })}
         </select>
-        <button onClick={() => dispatch(typePokemon(typeState))}>
+        <button onClick={() => changeDataTypes(typeState)}>
           Filter
         </button>
       </section>
-      <CardsContainer pokemons={pokemons}/>
-      <CardsContainer pokemons={pokemonsFilter}/>
+      {!dataPokemonFilter && !dataPokemonTypes  &&(
+        <CardsContainer pokemons={pokemons}/>
+      )}
+      {dataPokemonFilter && (
+        <CardsContainer pokemons={pokemonsFilter}/>
+      )}
+      {dataPokemonTypes && (
       <CardsContainer pokemons={typesData}/>
+      )}
+      <section className={styles.loader}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </section>
     </div>
   );
 };
