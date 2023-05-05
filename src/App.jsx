@@ -23,11 +23,11 @@ function App() {
         <Route path="/create" element={<Create />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-        {/* {
+        {
           location.pathname !== "/" && (
             <Footer/>
           )
-        } */}
+        }
     </div>
   );
 }
