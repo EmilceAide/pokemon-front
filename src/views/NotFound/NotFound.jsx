@@ -10,7 +10,7 @@ const NotFound = () => {
     <>
     <div className={styles.container}>
       <h1>404 - Página no encontrada</h1>
-      <p>La ruta hacia {`http://localhost:3000${location.pathname}`} no existe</p>
+      <p>La ruta {`http://localhost:3000${location.pathname}`} no existe</p>
     </div>
     </>
   );
