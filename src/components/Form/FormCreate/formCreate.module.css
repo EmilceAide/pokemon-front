@@ -53,16 +53,18 @@
     align-items: center;
 }
 .section_tree button{
-    background-color: var(--color-secundary-light);
+    background-color: var(--color-secundary-strong);
     border: 1px solid var(--color-primary-strong);
     padding: 0 20px;
     margin: 5px 0 0 0;
     cursor: pointer;
     font-size: var(--text-small);
     font-family: var(--font-family-primary);
+    color: var(--color-secundary-light);
 }
 .section_tree button:hover{
-    background-color: var(--color-secundary-strong);
+    background-color: var(--color-primary-ligth);
     border: 1px solid var(--color-secundary-strong);
-    color: var(--color-secundary-light);
+    color: #000;
+    
 }
