@@ -81,6 +81,14 @@
     font-weight: 100;
     margin: 0;
 }
+.main_content button{
+    background-color: var(--color-primary-strong);
+    border: 1px solid var(--color-primary-strong);
+    color: var(--color-secundary-light);
+    width: 100px;
+    height: 3em;
+    font-size: var(--text-medium);
+}
 @keyframes main-content{
     0% {
       transform: translateY(-600px);

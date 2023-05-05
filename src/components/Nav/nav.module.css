@@ -8,6 +8,13 @@
     align-items: center;
 
 }
+.container div{
+    display: flex;
+    justify-content: space-evenly;
+}
+.container div img {
+    width: 30%;
+}
 .btnView {
     margin: 10px;
     font-size: var(--text-small);
@@ -15,14 +22,8 @@
     font-family: var(--font-family-primary);
     color: rgb(167, 222, 216);
 }
+.btnView:focus,
 .btnView:hover{
-    background-color: var(--color-secundary-strong);
-    padding: 10px;
-    color: aliceblue;
-    text-decoration:underline;
-}
-.btnView:focus{
-    background-color:var(--color-secundary-strong);
     padding: 10px;
     color: aliceblue;
     text-decoration:underline;

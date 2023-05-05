@@ -14,17 +14,44 @@
     justify-content: flex-end;
     align-items: center;
   }
+  .btns p{
+        font-family: var(--font-family-primary);
+    font-weight: 500;
+  }
+  .btns select{
+    background-color: var(--color-secundary-light);
+    padding: 2px;
+    border: none;
+    outline: none;
+  }
+  .btns select option {
+    text-transform: capitalize;
+    font-family: var(--font-family-primary);
+    font-weight: 500;
+  }
   .btns button{
-    padding: 0 5px;
-    margin: 0 5px;
+    background-color:  var( --color-primary-strong);
     border: 1px solid var(--color-primary-strong);
     cursor: pointer;
+    padding: 0 5px;
+    margin: 0 5px;
     font-size: var(--text-x-small);
     font-family: var(--font-family-primary);
+    color: rgb(167, 222, 216);
+  }
+  .btns .btnFilter button{
+    background-color: var(--color-secundary-light);
+    color: #000;
+    border: none;
+  }
+  .btns .btnFilter button:hover {
+    background-color: var(--color-secundary-strong) ;
+    color: var( --color-secundary-light);
   }
   .btns button:hover,
   .btns button:focus{
     background-color: var(--color-secundary-light);
+    color: #000
   }
   .btns p {
     font-size: var(--text-x-small);

@@ -16,7 +16,7 @@ const Card = ({
   Types,
   types,
   detail,
-  created
+  created,
 }) => {
   let arrType = [];
   if (types && !Types) {
@@ -28,23 +28,34 @@ const Card = ({
 
   return (
     <div className={styles.container} key={id}>
-      {
-        !created &&(<div>
-          {!detail && (
-             <div className={styles.btn_container}>
-             <Link to={`/pokemon/${id}`}>
-               <button className={styles.btn}>{` Ver más + `} </button>
-             </Link>
-             </div>
-           )}
-      {detail && <h3 className={styles.id}>Id: {id}</h3>}
+      {!created && (
+        <div className={styles.idContainer}>
+          {detail && <h3 className={styles.id}>{id}</h3>}
         </div>
-        )
-      }
-      {image &&  <img src={image} alt="Avatar del pokemón" className={styles.image} />}
-      <h3 className={styles.name}>{name} </h3>
+      )}
+
+      <div className={styles.basicContainer}>
+        {image && (
+          <Link to={`/pokemon/${id}`}>
+            <img
+              src={image}
+              alt="Avatar del pokemón"
+              className={styles.image}
+            />
+          </Link>
+        )}
+        <div className={styles.basicTwo}>
+          <h3 className={styles.name}>{name} </h3>
+          <div className={styles.typesContainer}>
+            {arrType.map((el, i) => {
+              return <p key={i}>Tipo: {el}</p>;
+            })}
+          </div>
+        </div>
+      </div>
+
       {detail && (
-        <div>
+        <div className={styles.detailContainer}>
           <p className={styles.hp}>Vida: {hp} </p>
           <p className={styles.attack}>Ataque: {attack} </p>
           <p className={styles.defense}>Defensa: {defense} </p>
@@ -53,13 +64,6 @@ const Card = ({
           <p className={styles.weight}>Peso: {weight} </p>
         </div>
       )}
-      <div className={styles.typesContainer}>
-        {arrType.map((el, i) => {
-          return(
-             <p key={i}>Tipo: {el}</p>
-             );
-        })}
-      </div>
     </div>
   );
 };

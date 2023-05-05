@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./landing.module.css";
 
 const Landing = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={styles.page}>
@@ -19,7 +23,7 @@ const Landing = () => {
           </div>
 
           <section className={styles.main_content}>
-            <p>Hola 1</p>
+            <button onClick={() => navigate(`/home`)}>Ingresar</button>
             <h1>Hola 2</h1>
             <p>Hola 3</p>
           </section>

@@ -23,7 +23,7 @@
 
 }
 .container form input {
-    border: 1px solid var(--color-secundary-strong);
+    border: 1px solid rgb(67, 67, 218);
 }
 .container form input:focus{
     background-color: var(--color-secundary-light);
@@ -57,6 +57,12 @@
     border: 1px solid var(--color-primary-strong);
     padding: 0 20px;
     margin: 5px 0 0 0;
+    cursor: pointer;
     font-size: var(--text-small);
     font-family: var(--font-family-primary);
+}
+.section_tree button:hover{
+    background-color: var(--color-secundary-strong);
+    border: 1px solid var(--color-secundary-strong);
+    color: var(--color-secundary-light);
 }

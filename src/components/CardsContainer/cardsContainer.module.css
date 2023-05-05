@@ -8,23 +8,29 @@
 }
 .data {
   width: 60%;
-  margin: 30px 0 0 0;
+  margin: 10px 0 0 0;
 
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
-.pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pagination {
+  width: 60%;
+  margin: 10px 0 0 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.current{
+.current {
   font-family: var(--font-family-primary);
   font-size: var(--text-x-small);
   font-weight: 600;
+  padding: 0 10px;
+  margin: 0 10px;
 }
-.btns{
+.btns {
   width: 60%;
   margin: 10px 0 0 0;
 
@@ -32,7 +38,7 @@
   justify-content: flex-start;
   align-items: center;
 }
-.btns button{
+.btns button {
   padding: 0 5px;
   margin: 0 5px;
   border: 1px solid var(--color-primary-strong);
@@ -41,7 +47,7 @@
   font-family: var(--font-family-primary);
 }
 .btns button:hover,
-.btns button:focus{
+.btns button:focus {
   background-color: var(--color-secundary-light);
 }
 .btns p {
@@ -49,12 +55,19 @@
   font-family: var(--font-family-primary);
 }
 .btn {
-  margin: 10px ;
+  background-color: #ffa500;
+  margin: 10px;
   padding: 0 10px;
   border: 1px solid var(--color-primary-strong);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: var(--text-small);
   font-weight: 600;
   font-family: var(--font-family-primary);
   text-transform: uppercase;
+}
+.btn:hover {
+  transform: scale(1.1);
 }

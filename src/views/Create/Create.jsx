@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { postPokemon } from "../../service/axiosService";
 import { validation } from "../../models/validation";
 import { getTypes } from "../../redux/actions";
-import Card from "../../components/Card/Card";
 import FormCreate from "../../components/Form/FormCreate/FormCreate";
+import character from "../../assets/Pokemon05-540x1024.png";
+import pika from "../../assets/d0a6b-pikachu-ball-png.webp";
 import styles from "./create.module.css";
 
 const Create = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [route, setRoute] = useState(0);
   const [typeSelect, setTypeSelect] = useState([]);
   const [form, setForm] = useState({
     name: "",
@@ -39,10 +37,10 @@ const Create = () => {
     weight: 0,
     types: [],
   });
-  
-    useEffect(() => {
-      dispatch(getTypes());
-    }, []);
+
+  useEffect(() => {
+    dispatch(getTypes());
+  }, []);
 
   const changeHandler = (e) => {
     const property = e.target.name;
@@ -68,7 +66,6 @@ const Create = () => {
       .then((res) => {
         if (res.status === 201) {
           setSuccess(true);
-          setRoute(res.data.id);
         }
       })
       .catch(() => {
@@ -77,51 +74,55 @@ const Create = () => {
   };
 
   return (
-    <div className={styles.container}>
-      {/* <button onClick={() => navigate(-1)}>Volver</button>
-      <p>Crea tu pokemón</p> */}
-      <div className={styles.createContainer}>
-      <section className={styles.formContainer}>
-        <FormCreate
-          form={form}
-          errors={errors}
-          submitHandler={submitHandler}
-          changeHandler={changeHandler}
-          handleOnCheckbox={handleOnCheckbox}
-        />
-      </section>
+    <>
+      <div className={styles.container}>
+        <div className={styles.createContainer}>
+          <img
+            className={styles.character}
+            src={character}
+            alt="Personaje de Pokemon"
+          />
+          <section className={styles.formContainer}>
+            <h2>¡Agrega tu Pokemón!</h2>
+            <FormCreate
+              form={form}
+              errors={errors}
+              submitHandler={submitHandler}
+              changeHandler={changeHandler}
+              handleOnCheckbox={handleOnCheckbox}
+            />
+          </section>
 
-      <section className={styles.cardContainer}>
-        <div className={styles.detail}>
-        <h3>Nombre: {form.name}</h3>
-        {form.image && 
-        <img src={form.image} alt="Imagen de pokemón" />
-        }
-        <p>Vida: {form.hp}</p>
-        <p>Ataque: {form.attack}</p>
-        <p>Defensa: {form.defense}</p>
-        <p>Velocidad: {form.speed}</p>
-        <p>Altura: {form.height}</p>
-        <p>Peso: {form.weight}</p>
+          <section className={styles.cardContainer}>
+            <div className={styles.detail}>
+              <h3>Nombre: {form.name}</h3>
+              {form.image && <img src={form.image} alt="Imagen de pokemón" />}
+              <p>Vida: {form.hp}</p>
+              <p>Ataque: {form.attack}</p>
+              <p>Defensa: {form.defense}</p>
+              <p>Velocidad: {form.speed}</p>
+              <p>Altura: {form.height}</p>
+              <p>Peso: {form.weight}</p>
+            </div>
+
+            <div>
+              {success
+                && <p className={styles.textSuccess}>{`Se creo exitosamente el Pokemón:  ${form.name}` }</p> }
+
+              {failed &&
+              <p className={styles.textFailed}>{`Intentalo nuevamente. El Pokemón ${form.name} no fue creado`}</p>
+               }
+            </div>
+
+            <img
+              className={styles.pikachu}
+              src={pika}
+              alt="Personaje de Pokemon"
+            />
+          </section>
         </div>
-
-        <div>
-          {success
-            ? `Se creo exitosamente el pokemon ${form.name}` && (
-                <button onClick={() => navigate(`/pokemon/${route}`)}>
-                  Visitar Nuevo Pokemon
-                </button>
-              )
-            : null}
-
-          {failed &&
-            `Intentalo nuevamente. El pokemón ${form.name} no fue creado`}
-        </div>
-
-      </section>
-
       </div>
-    </div>
+    </>
   );
 };
 

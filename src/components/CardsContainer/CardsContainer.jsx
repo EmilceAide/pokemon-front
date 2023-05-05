@@ -37,11 +37,11 @@ const CardsContainer = ({pokemons}) => {
     <div className={styles.container}>
       <section className={styles.pagination}>
         <button className={styles.btn} onClick={goToPrevPage}>
-          Anterior
+          {'<'}
         </button>
         {<p className={styles.current}>{current}</p>}
         <button className={styles.btn} onClick={goToNextPage}>
-          Siguiente
+        {'>'}
         </button>
       </section>
 

@@ -1,20 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
+import logo from "../../assets/log.png"
 import styles from './nav.module.css'
 
 const Nav = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
         <div>
-        <Link to="/home">
-          <button className={styles.btnView}> HOME </button>
-        </Link>
-
-        <Link to="/create">
-          <button className={styles.btnView}> AGREGAR POKEMON </button>
-        </Link>
+          <img src={logo} alt="Logo de la página" />
+          <button className={styles.btnView} onClick={() => navigate("/home")}> HOME </button>
+          <button className={styles.btnView}  onClick={() => navigate("/create")}> AGREGAR POKEMON </button>
         </div>
 
         <div>

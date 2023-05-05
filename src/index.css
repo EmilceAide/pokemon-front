@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Skranji:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Prompt:wght@300;400;600&family=Skranji:wght@400;700&display=swap');
 :root{
-  --color-primary-strong: #2C3333;
-  --color-secundary-strong: #2E4F4F;
-  --color-primary-light: #0E8388;
-  --color-secundary-light: #CBE4DE;
-  --font-family-primary: "Lato";
+  --color-primary-strong:  #b30000;
+  --color-secundary-strong:  #e60000;
+  --color-primary-light:  #ff6666;
+  --color-secundary-light:  #ffe6e6;
+  --font-family-primary: "Prompt";
   --font-family-secundary:"Skranji";
   --text-x-small: 1.2em;
   --text-small: 1.5em;
@@ -14,6 +14,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 body {
   height: 100vh;
