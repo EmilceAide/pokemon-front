@@ -1,9 +1,9 @@
 .container {
     background-color: var(--color-primary-strong);
-    position: absolute;
     bottom: 0px;
     width: 100vw;
     height: 20px;
+   
 
     display: flex;
     justify-content: center;

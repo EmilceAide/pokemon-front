@@ -1,74 +1,75 @@
 .container {
-    padding: 10px 0 0 0;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .btns{
-    width: 60%;
-    margin: 10px 0 0 0;
-  
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .btns p{
-        font-family: var(--font-family-primary);
-    font-weight: 500;
-  }
-  .btns select{
-    background-color: var(--color-secundary-light);
-    padding: 2px;
-    border: none;
-    outline: none;
-  }
-  .btns select option {
-    text-transform: capitalize;
-    font-family: var(--font-family-primary);
-    font-weight: 500;
-  }
-  .btns button{
-    background-color:  var( --color-primary-strong);
-    border: 1px solid var(--color-primary-strong);
-    cursor: pointer;
-    padding: 0 5px;
-    margin: 0 5px;
-    font-size: var(--text-x-small);
-    font-family: var(--font-family-primary);
-    color: rgb(167, 222, 216);
-  }
-  .btns .btnFilter button{
-    background-color: var(--color-secundary-light);
-    color: #000;
-    border: none;
-  }
-  .btns .btnFilter button:hover {
-    background-color: var(--color-secundary-strong) ;
-    color: var( --color-secundary-light);
-  }
-  .btns button:hover,
-  .btns button:focus{
-    background-color: var(--color-secundary-light);
-    color: #000
-  }
-  .btns p {
-    font-size: var(--text-x-small);
-    font-family: var(--font-family-primary);
-  }
-  .btn {
-    margin: 10px ;
-    padding: 0 10px;
-    border: 1px solid var(--color-primary-strong);
-    cursor: pointer;
-    font-size: var(--text-small);
-    font-weight: 600;
-    font-family: var(--font-family-primary);
-    text-transform: uppercase;
-  }
-  /*Loader*/
-.loader{
+  padding: 10px 0 0 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btns {
+  width: 60%;
+  margin: 10px 0 0 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.btns p {
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+}
+.btns select {
+  background-color: var(--color-secundary-light);
+  padding: 2px;
+  border: none;
+  outline: none;
+}
+.btns select option {
+  text-transform: capitalize;
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+}
+.btns button {
+  background-color: var(--color-primary-strong);
+  border: 1px solid var(--color-primary-strong);
+  cursor: pointer;
+  padding: 0 5px;
+  margin: 0 5px;
+  font-size: var(--text-x-small);
+  font-family: var(--font-family-primary);
+  color: rgb(167, 222, 216);
+}
+.btns .btnFilter button {
+  background-color: var(--color-secundary-light);
+  color: #000;
+  border: none;
+}
+.btns .btnFilter button:hover {
+  background-color: var(--color-secundary-strong);
+  color: var(--color-secundary-light);
+}
+.btns button:hover,
+.btns button:focus {
+  background-color: var(--color-secundary-light);
+  color: #000;
+}
+.btns p {
+  font-size: var(--text-x-small);
+  font-family: var(--font-family-primary);
+}
+.btn {
+  margin: 10px;
+  padding: 0 10px;
+  border: 1px solid var(--color-primary-strong);
+  cursor: pointer;
+  font-size: var(--text-small);
+  font-weight: 600;
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
+}
+/*Loader*/
+.loader {
   background-color: #fff;
   width: 100vw;
   height: 100vh;
@@ -83,16 +84,16 @@
 
 @keyframes loader {
   0% {
-      opacity: 1;
-      visibility: visible;
+    opacity: 1;
+    visibility: visible;
   }
   95% {
-      opacity: 1;
-      visibility: visible;
+    opacity: 1;
+    visibility: visible;
   }
   100% {
-      opacity: 0;
-      visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 .loader div {
@@ -106,24 +107,25 @@
 
   animation: scaling 2s ease-in-out infinite;
 }
-.loader div:nth-child(1){
+.loader div:nth-child(1) {
   animation-delay: 0.2s;
 }
-.loader div:nth-child(2){
+.loader div:nth-child(2) {
   animation-delay: 0.4s;
 }
-.loader div:nth-child(3){
+.loader div:nth-child(3) {
   animation-delay: 0.6s;
 }
 
 @keyframes scaling {
-  0%, 100% {
-      transform: scale(0.2);
+  0%,
+  100% {
+    transform: scale(0.2);
   }
   40% {
-      transform: scale(1);
+    transform: scale(1);
   }
   50% {
-      transform: scale(1);
+    transform: scale(1);
   }
 }

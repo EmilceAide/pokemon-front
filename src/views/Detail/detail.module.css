@@ -1,5 +1,5 @@
 .container {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 100px);
   background-image: url("../../assets/light.png");
 
   display: flex;
