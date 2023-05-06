@@ -12,6 +12,7 @@ const initialState = {
   pokemons: [],
   pokemonName: [],
   pokemonId: [],
+  pokemonNameOrId: [],
   pokemonTypes: [],
   typesData: [],
   pokemonsFilter: [],
@@ -23,13 +24,13 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, pokemons: action.payload };
 
     case GET_POKEMON_ID:
-      return { ...state, pokemonId: action.payload };
+      return { ...state, pokemonNameOrId: action.payload };
 
     case GET_TYPES:
       return { ...state, pokemonTypes: action.payload };
 
     case GET_POKEMON_NAME:
-      return { ...state, pokemonName: action.payload };
+      return { ...state,  pokemonNameOrId: action.payload };
 
     case POKEMON_ORDER:
       let dataOrder = [];

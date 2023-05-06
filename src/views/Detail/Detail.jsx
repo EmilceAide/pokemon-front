@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getPokemon } from "../../redux/actions";
+import { getPokemon, getPokemonName } from "../../redux/actions";
 import styles from "./detail.module.css";
 
 const Detail = () => {
   const { id } = useParams();
-  const { pokemonId, pokemonName } = useSelector((state) => state);
-  const [dataPokemon, setDataPokemon] = useState([]);
+  const { pokemonNameOrId } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -17,20 +16,12 @@ const Detail = () => {
   }, [id]);
 
   useEffect(() => {
-    const regex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-    
-    if (isNaN(id) && regex.test(id) && id.length ===36) { 
-         setDataPokemon([...pokemonId]);
-    } else if (isNaN(id)) {
-        setDataPokemon([...pokemonName]);
-    } else if (id.length !==36){
-      setDataPokemon([...pokemonId]);
-    }
-  }, [id, pokemonName, pokemonId]);
+    dispatch(getPokemonName(id));
+  }, [id]);
 
   return (
     <div className={styles.container}>
-      {dataPokemon?.map((pokemon) => {
+      { pokemonNameOrId?.map((pokemon) => {
         return (
           <>
             <div className={styles.containerTwo}>
