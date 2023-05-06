@@ -2,6 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./landing.module.css";
+import logo from "../../assets/log.png";
+import pikachu from "../../assets/pokachu-lo.png";
+import cat from "../../assets/equipor.png";
+import squar from "../../assets/squar.png";
+import interno from "../../assets/Pokemon05-540x1024.png";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -13,48 +18,38 @@ const Landing = () => {
         <section className={styles.container}>
           <div className={styles.navBar}>
             <div className={styles.navBar_content}>
-              <img src="" alt="" />
-              <ul>
-                <li>
-                  <a href="/">Crear</a>
-                </li>
-              </ul>
+              <img src={logo} alt="logo" />
             </div>
           </div>
 
           <section className={styles.main_content}>
+            <h1>¡Atrápalos Ya!</h1>
+            <p>
+              {" "}
+              Para extender nuestro reinos hasta las estrellas. Ríndanse ahora o
+              preparense a luchar.
+            </p>
             <button onClick={() => navigate(`/home`)}>Ingresar</button>
-            <h1>Hola 2</h1>
-            <p>Hola 3</p>
           </section>
 
           <section className={styles.side_content}>
             <div></div>
-            <p>Pokemon</p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/25.png" alt="imagen de pikachu" />
+            <p>Pokemón</p>
+            <img src={interno} alt="Imagen de Pikachu" />
           </section>
 
           <section className={styles.footer}>
-            <div>
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/4.png" alt="" />
+            <div className={styles.poke1}>
+              <img src={pikachu} alt="Imagen de Pikachu" />
             </div>
             <div>
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/9.png" alt="" />
+              <img className={styles.catStyle} src={cat} alt="Imagen de pokemón" />
             </div>
             <div>
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/38.png" alt="" />
+              <img src={squar} alt="Imagen de pokemon" />
             </div>
           </section>
         </section>
-        {/**Loader */}
-        <section className={styles.loader}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </section>
-        {/**Modal */}
-        <section></section>
-
       </div>
     </>
   );
