@@ -29,12 +29,17 @@ const Home = () => {
     dispatch(getTypes());
   }, []);
 
+  const changeDataOrder = (option) => {
+    setDataPokemonTypes(false)
+    setDataPokemonFilter(false);
+    setDataPokemons(true)
+    dispatch(orderPokemon(option));
+  };
   const changeDataFilter = (option) => {
     setDataPokemons(false)
     setDataPokemonTypes(false)
     setDataPokemonFilter(true);
     dispatch(filterPokemon(option));
-    console.log("info", dataPokemonFilter);
   };
 
   const changeDataTypes = (typeState) => {
@@ -42,23 +47,23 @@ const Home = () => {
     setDataPokemonFilter(false)
     setDataPokemonTypes(true);
     dispatch(typePokemon(typeState));
-    console.log("info", dataPokemonTypes);
   };
+  
 
   return (
     <div className={styles.container}>
       <section className={styles.btns}>
         <p>Ordenar:</p>
-        <button onClick={() => dispatch(orderPokemon("ASC"))}>
+        <button onClick={() => changeDataOrder("ASC")}>
           ASCENDENTE
         </button>
-        <button onClick={() => dispatch(orderPokemon("DESC"))}>
+        <button onClick={() =>changeDataOrder("DESC")}>
           DESCENDENTE
         </button>
-        <button onClick={() => dispatch(orderPokemon("alphabetical"))}>
+        <button onClick={() => changeDataOrder("alphabetical")}>
           A-Z
         </button>
-        <button onClick={() => dispatch(orderPokemon("attack"))}>
+        <button onClick={() =>changeDataOrder("attack")}>
           PODER DE ATAQUE
         </button>
         <p>Filtrar:</p>
@@ -81,7 +86,7 @@ const Home = () => {
       {!dataPokemonFilter && !dataPokemonTypes && (
         <CardsContainer pokemons={pokemons} />
       )}
-      {dataPokemonFilter && !dataPokemons && !dataPokemonTypes   && <CardsContainer pokemons={pokemonsFilter} />}
+      {dataPokemonFilter && !dataPokemonTypes && !dataPokemons && <CardsContainer pokemons={pokemonsFilter}/>}
       {dataPokemonTypes  && !dataPokemons && !dataPokemonFilter && <CardsContainer pokemons={typesData} />}
       <section className={styles.loader}>
         <div><img className={styles.imgOne} src={imgLoader} /></div>
