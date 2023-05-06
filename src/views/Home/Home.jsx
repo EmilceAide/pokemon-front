@@ -18,6 +18,7 @@ const Home = () => {
     (state) => state
   );
   const [typeState, setTypeState] = useState("");
+  const [dataPokemons, setDataPokemons] = useState(true);
   const [dataPokemonFilter, setDataPokemonFilter] = useState(false);
   const [dataPokemonTypes, setDataPokemonTypes] = useState(false);
 
@@ -29,12 +30,16 @@ const Home = () => {
   }, []);
 
   const changeDataFilter = (option) => {
+    setDataPokemons(false)
+    setDataPokemonTypes(false)
     setDataPokemonFilter(true);
     dispatch(filterPokemon(option));
     console.log("info", dataPokemonFilter);
   };
 
   const changeDataTypes = (typeState) => {
+    setDataPokemons(false)
+    setDataPokemonFilter(false)
     setDataPokemonTypes(true);
     dispatch(typePokemon(typeState));
     console.log("info", dataPokemonTypes);
@@ -76,8 +81,8 @@ const Home = () => {
       {!dataPokemonFilter && !dataPokemonTypes && (
         <CardsContainer pokemons={pokemons} />
       )}
-      {dataPokemonFilter && <CardsContainer pokemons={pokemonsFilter} />}
-      {dataPokemonTypes && <CardsContainer pokemons={typesData} />}
+      {dataPokemonFilter && !dataPokemons && !dataPokemonTypes   && <CardsContainer pokemons={pokemonsFilter} />}
+      {dataPokemonTypes  && !dataPokemons && !dataPokemonFilter && <CardsContainer pokemons={typesData} />}
       <section className={styles.loader}>
         <div><img className={styles.imgOne} src={imgLoader} /></div>
         <div><img className={styles.imgTwo} src={imgLoader} /></div>
