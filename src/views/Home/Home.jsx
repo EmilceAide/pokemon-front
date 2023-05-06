@@ -10,6 +10,7 @@ import {
   getTypes,
 } from "../../redux/actions";
 import styles from "./home.module.css";
+import imgLoader from "../../assets/loader.gif"
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -78,9 +79,9 @@ const Home = () => {
       {dataPokemonFilter && <CardsContainer pokemons={pokemonsFilter} />}
       {dataPokemonTypes && <CardsContainer pokemons={typesData} />}
       <section className={styles.loader}>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img className={styles.imgOne} src={imgLoader} /></div>
+        <div><img className={styles.imgTwo} src={imgLoader} /></div>
+        <div><img className={styles.imgTree} src={imgLoader} /></div>
       </section>
     </div>
   );
