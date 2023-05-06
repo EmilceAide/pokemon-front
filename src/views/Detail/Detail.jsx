@@ -17,9 +17,13 @@ const Detail = () => {
   }, [id]);
 
   useEffect(() => {
-    if (isNaN(id)) {
-      setDataPokemon([...pokemonName]);
-    } else {
+    const regex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    
+    if (isNaN(id) && regex.test(id) && id.length ===36) { 
+         setDataPokemon([...pokemonId]);
+    } else if (isNaN(id)) {
+        setDataPokemon([...pokemonName]);
+    } else if (id.length !==36){
       setDataPokemon([...pokemonId]);
     }
   }, [id, pokemonName, pokemonId]);
