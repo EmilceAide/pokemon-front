@@ -70,11 +70,13 @@
 }
 /*Loader*/
 .loader {
+  background-color: #fff;
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   align-items:first baseline;
   justify-content: center;
+  position: absolute;
   z-index: 3;
 
   animation: loader 3s linear forwards;
