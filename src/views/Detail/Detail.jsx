@@ -6,7 +6,6 @@ import { getPokemon } from "../../redux/actions";
 import styles from "./detail.module.css";
 
 const Detail = () => {
-
   const { id } = useParams();
   const { pokemonId, pokemonName } = useSelector((state) => state);
   const [dataPokemon, setDataPokemon] = useState([]);
@@ -16,50 +15,51 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getPokemon(id));
   }, [id]);
- 
+
   useEffect(() => {
-    if(isNaN(id)){
+    if (isNaN(id)) {
       setDataPokemon([...pokemonName]);
-    }else{
-      setDataPokemon([...pokemonId])
+    } else {
+      setDataPokemon([...pokemonId]);
     }
   }, [id, pokemonName, pokemonId]);
 
   return (
     <div className={styles.container}>
-      {
-        dataPokemon?.map((pokemon) => {
-          return (
-            <>
-              <div className={styles.containerTwo}>
-                <div className={styles.detailContainer}>
-                  <section className={styles.sectionContainer}>
-                    <h3 className={styles.id}>{pokemon.id}</h3>
+      {dataPokemon?.map((pokemon) => {
+        return (
+          <>
+            <div className={styles.containerTwo}>
+              <div className={styles.detailContainer}>
+                <section className={styles.sectionContainer}>
+                  <h3 className={styles.id}>{pokemon.id}</h3>
+                  <div className={styles.imgContainer}>
                     <img src={pokemon.image} alt="Imagén de pokemón" />
-                    <h3 className={styles.name}>{pokemon.name}</h3>
-                  </section>
-                  <section className={styles.detailTwo}>
-                    <p>Vida: {pokemon.hp}</p>
-                    <p>Ataque: {pokemon.attack}</p>
-                    <p>Defensa: {pokemon.defense}</p>
-                    <p>Velocidad: {pokemon.speed}</p>
-                    <p>Altura: {pokemon.height}</p>
-                    <p>Peso: {pokemon.weight}</p>
-                  </section>
-                </div>
-                <div className={styles.typesContainer}>
-                  {console.log(pokemon.types)}
-                  {pokemon?.types?.split(",").map((el, i) => {
-                    return <p key={i}>Tipo: {el}</p>;
-                  })}
-                  {pokemon?.Types?.map((el, i) => {
-                    return <p key={i}>Tipo: {el.name}</p>;
-                  })}
-                </div>
+                  </div>
+                  <h3 className={styles.name}>{pokemon.name}</h3>
+                  <div className={styles.typesContainer}>
+                    {console.log(pokemon.types)}
+                    {pokemon?.types?.split(",").map((el, i) => {
+                      return <p key={i}>Tipo: {el}</p>;
+                    })}
+                    {pokemon?.Types?.map((el, i) => {
+                      return <p key={i}>Tipo: {el.name}</p>;
+                    })}
+                  </div>
+                </section>
+                <section className={styles.detailTwo}>
+                  <p className={styles.hp}>Vida: {pokemon.hp}</p>
+                  <p className={styles.attack}>Ataque: {pokemon.attack}</p>
+                  <p className={styles.defense}>Defensa: {pokemon.defense}</p>
+                  <p className={styles.speed}>Velocidad: {pokemon.speed}</p>
+                  <p className={styles.height}>Altura: {pokemon.height}</p>
+                  <p className={styles.weight}>Peso: {pokemon.weight}</p>
+                </section>
               </div>
-            </>
-          );
-        })}
+            </div>
+          </>
+        );
+      })}
     </div>
   );
 };

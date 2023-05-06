@@ -7,37 +7,42 @@
   justify-content: center;
   align-items: center;
 }
-.container div section img {
+.imgContainer {
+  background-image: url("../../assets/paisaje.PNG");
+  padding: 0 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.container div section div img {
   width: 50%;
 }
 
 .container div section img:hover {
   transform: scale(1.1);
 }
-.containerTwo {
+.sectionContainer {
   background-color: #ffd825;
-  border: 5px solid #1a75ff;
-  border-radius: 10px;
-  padding: 0 30px 30px 0px;
-}
-.detailContainer {
-  display: flex;
-}
-.detailContainer section {
+  padding: 0 0 30px 0px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
+
+.detailContainer {
+  border: 5px solid #1a75ff;
+  border-radius: 10px;
+}
+
 .id {
+  background-image: url("../../assets/word.png");
   background-color: #1a75ff;
-  border-radius: 0 0 100px 0;
   width: 100%;
   padding: 0 50px;
   color: rgb(21, 24, 24);
   text-align: center;
   font-family: var(--font-family-primary);
-  font-size: var(--text-large);
+  font-size: 2.5em;
+  font-weight: 600;
 }
 .name {
   padding: 0 0 0 50px;
@@ -48,8 +53,9 @@
 }
 .detailContainer section p {
   font-family: var(--font-family-primary);
-  font-size: var(--text-large);
-  font-weight: 400;
+  font-size: 1.8em;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 .typesContainer {
   margin: 10px 0;
@@ -68,4 +74,50 @@
   font-family: var(--font-family-primary);
   font-size: var(--text-large);
   font-weight: 400;
+}
+.detailTwo {
+  background-image: url("../../assets/dark.png");
+  background-color: #1a75ff;
+
+  display: grid;
+  grid-template-areas: "hp attack"
+                      "defense speed"
+                      "height weigh";
+  justify-content:space-evenly;
+}
+.hp{
+  grid-area: hp;
+  margin: 10px 0 10px 0;
+}
+.attack{
+  grid-area: attack;
+  margin: 10px 0 10px 0;
+}
+.defense{
+  grid-area: defense;
+  margin: 0 0 10px 0;
+}
+.speed{
+  grid-area: speed;
+  margin: 0 0 10px 0;
+}
+.height{
+  grid-area: height;
+  margin: 0 0 10px 0;
+}
+.weight{
+  grid-area: weigh; 
+  margin: 0 0 10px 0;
+}
+.hp,
+.attack,
+.defense,
+.speed,
+.height,
+.weight{
+  background-image: url("../../assets/word.png");
+  background-color: #1a75ff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0 15px;
 }
