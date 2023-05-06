@@ -10,8 +10,8 @@ import {
   GET_TYPES,
   GET_POKEMON_NAME,
   POKEMON_ORDER,
-  POKEMON_FILTER, 
-  POKEMON_TYPES, 
+  POKEMON_FILTER,
+  POKEMON_TYPES,
 } from "./actions-types";
 
 //*Pokemons data
@@ -46,21 +46,18 @@ export const getTypes = () => {
 //* Order and filter
 export const orderPokemon = (option) => {
   return (dispatch) => {
-    console.log('action', option)
     dispatch({ type: POKEMON_ORDER, payload: option });
   };
 };
 
 export const filterPokemon = (option) => {
   return (dispatch) => {
-    console.log('action', option)
     dispatch({ type: POKEMON_FILTER, payload: option });
   };
 };
 
 export const typePokemon = (option) => {
   return (dispatch) => {
-    console.log('action', option)
     dispatch({ type: POKEMON_TYPES, payload: option });
   };
 };

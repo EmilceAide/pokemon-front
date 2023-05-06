@@ -23,62 +23,52 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, pokemons: action.payload };
 
     case GET_POKEMON_ID:
-      return {...state,  pokemonId: action.payload };
+      return { ...state, pokemonId: action.payload };
 
     case GET_TYPES:
       return { ...state, pokemonTypes: action.payload };
 
     case GET_POKEMON_NAME:
-      return {...state,  pokemonName: action.payload };
+      return { ...state, pokemonName: action.payload };
 
     case POKEMON_ORDER:
       let dataOrder = [];
       if (action.payload === "ASC") {
-        dataOrder = dataOrder.concat(
-          state.pokemons?.sort((a, b) => {
-            return a.id - b.id;
-          })
-        );
+        dataOrder = state.pokemons?.sort((a, b) => {
+          return a.id - b.id;
+        });
       }
       if (action.payload === "DESC") {
-        dataOrder = dataOrder = state.pokemons?.sort((a, b) => {
+        dataOrder = state.pokemons?.sort((a, b) => {
           return b.id - a.id;
         });
       }
       if (action.payload === "alphabetical") {
-        dataOrder = dataOrder.concat(
-          state.pokemons?.sort((a, b) => {
-            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-          })
-        );
+        dataOrder = state.pokemons?.sort((a, b) => {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+        });
       }
       if (action.payload === "attack") {
-        dataOrder = dataOrder.concat(
-          state.pokemons?.sort((a, b) => {
-            return a.attack - b.attack;
-          })
-        );
+        dataOrder = state.pokemons?.sort((a, b) => {
+          return a.attack - b.attack;
+        });
       }
-      return {...state,  pokemons: dataOrder };
+      return { ...state, pokemons: dataOrder };
 
     case POKEMON_FILTER:
       let dataFilter = [];
       if (action.payload === "API") {
         dataFilter = state.pokemons?.filter((el) => el.created === false);
-        console.log("API =>", dataFilter);
       }
       if (action.payload === "DB") {
         dataFilter = state.pokemons?.filter((el) => el.created === true);
-        console.log("DB =>", dataFilter);
       }
       return { ...state, pokemonsFilter: dataFilter };
 
     case POKEMON_TYPES:
       let dataTypes = [];
       let database = state.pokemons?.filter((el) => el.created === true);
-      console.log(database, "database");
       let dataApi = state.pokemons?.filter((el) => el.created === false);
-      console.log(dataApi, "dataApi");
       dataApi?.filter((el) => {
         if (typeof el.types === "string") {
           const arr = el.types.split(",");
@@ -96,8 +86,7 @@ const rootReducer = (state = initialState, action) => {
           }
         });
       });
-      console.log("reducer", dataTypes);
-      return {...state, typesData: dataTypes };
+      return { ...state, typesData: dataTypes };
 
     default:
       return { ...state };
