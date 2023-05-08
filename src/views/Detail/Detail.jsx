@@ -7,7 +7,8 @@ import styles from "./detail.module.css";
 
 const Detail = () => {
   const { id } = useParams();
-  const { pokemonNameOrId } = useSelector((state) => state);
+  const {pokemonId, pokemonName } = useSelector((state) => state);
+  const [data, setData] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -19,9 +20,22 @@ const Detail = () => {
     dispatch(getPokemonName(id));
   }, [id]);
 
+  useEffect(() => {
+    const regex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    if (isNaN(id)  && id.length !==36) {
+      setData([...pokemonName]);
+    }
+    if (!isNaN(id) && id.length !==36){
+      setData([...pokemonId]);
+    }
+    if (isNaN(id) && regex.test(id) && id.length ===36) {
+      setData([...pokemonId]);
+    }
+  }, [id, pokemonName, pokemonId]);
+
   return (
     <div className={styles.container}>
-      { pokemonNameOrId?.map((pokemon) => {
+      { data?.map((pokemon) => {
         return (
           <>
             <div className={styles.containerTwo}>
