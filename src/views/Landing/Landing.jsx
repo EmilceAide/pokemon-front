@@ -40,13 +40,13 @@ const Landing = () => {
 
           <section className={styles.footer}>
             <div className={styles.poke1}>
-              <img src={pikachu} alt="Imagen de Pikachu" />
+              <img className={styles.pikachu} src={pikachu} alt="Imagen de Pikachu" />
             </div>
             <div>
               <img className={styles.catStyle} src={cat} alt="Imagen de pokemón" />
             </div>
             <div>
-              <img src={squar} alt="Imagen de pokemon" />
+              <img className={styles.squar} src={squar} alt="Imagen de pokemon" />
             </div>
           </section>
         </section>
