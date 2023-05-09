@@ -29,13 +29,13 @@ const Create = () => {
   const [errors, setErrors] = useState({
     name: "",
     image: "",
-    hp: 0,
-    attack: 0,
-    defense: 0,
-    speed: 0,
-    height: 0,
-    weight: 0,
-    types: [],
+    hp: "",
+    attack: "",
+    defense: "",
+    speed: "",
+    height: "",
+    weight: "",
+    types: "",
   });
 
   useEffect(() => {
@@ -62,16 +62,19 @@ const Create = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    postPokemon(form)
-      .then((res) => {
-        if (res.status === 201) {
-          setSuccess(true);
-        }
-      })
-      .catch(() => {
-        setFailed(true);
-      });
-  };
+
+    if(Object.entries(errors).length === 0){ 
+      postPokemon(form)
+        .then((res) => {
+          if (res.status === 201) {
+            setSuccess(true);
+          }
+        })
+        .catch(() => {
+          setFailed(true);
+        });
+    }
+    }
 
   return (
     <>
@@ -110,7 +113,9 @@ const Create = () => {
                 && <p className={styles.textSuccess}>{`Se creo exitosamente el Pokemón:  ${form.name}` }</p> }
 
               {failed &&
-              <p className={styles.textFailed}>{`Intentalo nuevamente. El Pokemón ${form.name} no fue creado`}</p>
+              <p className={styles.textFailed}>{`Intentalo nuevamente. 
+              El Pokemón ${form.name} no fue creado. 
+              Compruebe que ${form.name} no fue creado anteriormente`}</p>
                }
             </div>
 
