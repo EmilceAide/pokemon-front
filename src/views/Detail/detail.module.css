@@ -132,7 +132,7 @@
   position: absolute;
   z-index: 3;
 
-  animation: loader 1.5s linear forwards;
+  animation: loader 1s linear forwards;
 }
 
 @keyframes loader {
