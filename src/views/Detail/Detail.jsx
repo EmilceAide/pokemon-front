@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPokemon, getPokemonName } from "../../redux/actions";
 import styles from "./detail.module.css";
 import imgLoader from "../../assets/loader.gif";
+import imgPikachu from "../../assets/pikaelectric.gif";
 
 const Detail = () => {
-  
+
   const { id } = useParams();
   const {pokemonId, pokemonName } = useSelector((state) => state);
   const [data, setData] = useState([]);
@@ -34,6 +35,17 @@ const Detail = () => {
       setData([...pokemonId]);
     }
   }, [id, pokemonName, pokemonId]);
+
+  if (data.length === 0) {
+    return (
+      <div className={styles.container}>
+      <h1 className={styles.textInfo}> {
+      `No se encontro el pokemón. Intentalo de nuevo más tarde.`
+      }</h1>
+      <img src={imgPikachu} alt="Imagén de Pikachu" />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

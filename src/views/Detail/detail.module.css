@@ -17,6 +17,12 @@
   width: 50%;
 }
 
+.textInfo{
+  margin: 40px 0 0 0;
+
+  font-family: var(--font-family-primary);
+  font-size: var(--text-medium);
+}
 .container div section img:hover {
   transform: scale(1.1);
 }
