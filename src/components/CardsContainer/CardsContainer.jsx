@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Card from "../Card/Card";
 import styles from "./cardsContainer.module.css";
+import imgPikachu from '../../assets/pikaelectric.gif';
 
 const CardsContainer = ({pokemons}) => {
   let detail = false;
@@ -32,6 +33,17 @@ const CardsContainer = ({pokemons}) => {
       goToPage(current + 1);
     }
   };
+
+  if (data.length === 0) {
+    return (
+      <div className={styles.container}>
+      <h1 className={styles.textInfo}>
+       No se encontraron pokemones. Intentalo de nuevo más tarde.
+      </h1>
+      <img src={imgPikachu} alt="Imagén de Pikachu" />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
