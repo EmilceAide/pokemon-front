@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getPokemon, getPokemonName } from "../../redux/actions";
 import styles from "./detail.module.css";
+import imgLoader from "../../assets/loader.gif";
 
 const Detail = () => {
+  
   const { id } = useParams();
   const {pokemonId, pokemonName } = useSelector((state) => state);
   const [data, setData] = useState([]);
@@ -66,6 +68,11 @@ const Detail = () => {
                 </section>
               </div>
             </div>
+            <section className={styles.loader}>
+              <div><img className={styles.imgOne} src={imgLoader} /></div>
+              <div><img className={styles.imgTwo} src={imgLoader} /></div>
+              <div><img className={styles.imgTree} src={imgLoader} /></div>
+           </section>
           </>
         );
       })}
