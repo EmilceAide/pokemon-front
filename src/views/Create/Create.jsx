@@ -11,11 +11,7 @@ import styles from "./create.module.css";
 
 const Create = () => {
   const dispatch = useDispatch();
-
-  const [success, setSuccess] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const [typeSelect, setTypeSelect] = useState([]);
-  const [form, setForm] = useState({
+  const initialState = {
     name: "",
     image: "",
     hp: 0,
@@ -25,7 +21,12 @@ const Create = () => {
     height: 0,
     weight: 0,
     types: [],
-  });
+  }
+
+  const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [typeSelect, setTypeSelect] = useState([]);
+  const [form, setForm] = useState(initialState);
   const [errors, setErrors] = useState({
     name: "",
     image: "",
@@ -68,11 +69,16 @@ const Create = () => {
         .then((res) => {
           if (res.status === 201) {
             setSuccess(true);
+            setFailed(false);
+            setForm(initialState)
           }
         })
         .catch(() => {
           setFailed(true);
         });
+    }else{
+      setFailed(true);
+      setSuccess(false);
     }
     }
 
@@ -109,13 +115,12 @@ const Create = () => {
             </div>
 
             <div>
-              {success
-                && <p className={styles.textSuccess}>{`Se creo exitosamente el Pokemón:  ${form.name}` }</p> }
+              {success 
+                && <p className={styles.textSuccess}>{`Se creo exitosamente` }</p> }
 
-              {failed &&
-              <p className={styles.textFailed}>{`Intentalo nuevamente. 
-              El Pokemón ${form.name} no fue creado. 
-              Compruebe que ${form.name} no fue creado anteriormente`}</p>
+              {failed && 
+              <p className={styles.textFailed}>{`El Pokemón no fue creado. 
+              (Compruebe que los datos sean correctos o que el pokemón no fue creado anteriormente)`}</p>
                }
             </div>
 
