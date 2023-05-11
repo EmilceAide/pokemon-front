@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
 import logo from "../../assets/log.png";
@@ -15,9 +15,9 @@ const Nav = () => {
           ≡
         </label>
       <section className={styles.sectionOne}>
-        <a href="#" className={styles.logoEnlace}>
+        <Link to='/'>
           <img src={logo} alt="Logo" className={styles.logo} />
-        </a>
+        </Link>
       </section>
       
       <section className={styles.sectiontwo}>
