@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Card from "../Card/Card";
 import styles from "./cardsContainer.module.css";
@@ -7,8 +6,6 @@ import imgPikachu from '../../assets/pikaelectric.gif';
 
 const CardsContainer = ({pokemons}) => {
   let detail = false;
-
-  const navigate = useNavigate();
 
   const [current, setCurrent] = useState(1);
 
@@ -24,7 +21,6 @@ const CardsContainer = ({pokemons}) => {
 
   const goToPage = (page) => {
     setCurrent(page);
-    navigate(`/pokemons/${page}`);
   };
 
   const goToPrevPage = () => {
