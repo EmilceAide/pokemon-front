@@ -59,6 +59,12 @@ const Create = () => {
       setTypeSelect(typeSelect.filter((el) => el !== value));
       setForm({ ...form, types: typeSelect.filter((el) => el !== value) });
     }
+    if(form.types.length !== 1){
+      console.log(form.types)
+     errors.types='Tiene que selecionar dos tipos'
+    }else{
+      delete errors.types
+    }
   };
 console.log(errors, 'errors')
   const submitHandler = (e) => {
