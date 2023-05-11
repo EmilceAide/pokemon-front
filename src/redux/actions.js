@@ -9,7 +9,7 @@ import {
   GET_POKEMON_ID,
   GET_TYPES,
   GET_POKEMON_NAME,
-  POKEMON_ORDER,
+  POKEMON_SORT,
   POKEMON_FILTER,
   POKEMON_TYPES,
 } from "./actions-types";
@@ -46,7 +46,7 @@ export const getTypes = () => {
 //* Order and filter
 export const orderPokemon = (option) => {
   return (dispatch) => {
-    dispatch({ type: POKEMON_ORDER, payload: option });
+    dispatch({ type: POKEMON_SORT, payload: option });
   };
 };
 

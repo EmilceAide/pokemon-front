@@ -3,18 +3,22 @@ import {
   GET_POKEMON_ID,
   GET_TYPES,
   GET_POKEMON_NAME,
-  POKEMON_ORDER,
+  POKEMON_SORT,
   POKEMON_FILTER,
   POKEMON_TYPES,
 } from "./actions-types";
 
 const initialState = {
   pokemons: [],
+  pokemonsData: [],
+  filterAndSort: {
+    from: "",
+    types: "",
+    sort: "",
+  },
   pokemonName: [],
   pokemonId: [],
   pokemonTypes: [],
-  typesData: [],
-  pokemonsFilter: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,64 +33,136 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, pokemonTypes: action.payload };
 
     case GET_POKEMON_NAME:
-      return { ...state,  pokemonName: action.payload };
+      return { ...state, pokemonName: action.payload };
 
-    case POKEMON_ORDER:
-      let dataOrder = [];
-      if (action.payload === "ASC") {
-        dataOrder = state.pokemons?.sort((a, b) => {
-          return a.id - b.id;
-        });
-      }
-      if (action.payload === "DESC") {
-        dataOrder = state.pokemons?.sort((a, b) => {
-          return b.id - a.id;
-        });
-      }
-      if (action.payload === "alphabetical") {
-        dataOrder = state.pokemons?.sort((a, b) => {
-          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-        });
-      }
-      if (action.payload === "attack") {
-        dataOrder = state.pokemons?.sort((a, b) => {
-          return a.attack - b.attack;
-        });
-      }
-      return { ...state, pokemons: dataOrder };
-
+    //*Pokemons Filter
     case POKEMON_FILTER:
-      let dataFilter = [];
+      const dataAPI = state.pokemons?.filter((el) => el.created === false);
+      const dataDB = state.pokemons?.filter((el) => el.created === true);
+      if (action.payload === "total") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, from: "total" },
+          pokemonsData: [...dataAPI, ...dataDB],
+        };
+      }
       if (action.payload === "API") {
-        dataFilter = state.pokemons?.filter((el) => el.created === false);
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, from: "API" },
+          pokemonsData: [...dataAPI],
+        };
       }
       if (action.payload === "DB") {
-        dataFilter = state.pokemons?.filter((el) => el.created === true);
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, from: "DB" },
+          pokemonsData: [...dataDB],
+        };
       }
-      return { ...state, pokemonsFilter: dataFilter };
 
+    //*Pokemons Sort
+    case POKEMON_SORT:
+      if (action.payload === "ASC") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, sort: "ASC" },
+          pokemonsData: state.pokemonsData?.sort((a, b) => {
+            return a.id - b.id;
+          }),
+        };
+      }
+      if (action.payload === "DESC") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, sort: "DESC" },
+          pokemonsData: state.pokemonsData?.sort((a, b) => {
+            return b.id - a.id;
+          }),
+        };
+      }
+      if (action.payload === "AZ") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, sort: "AZ" },
+          pokemonsData: state.pokemonsData?.sort((a, b) => {
+            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+          }),
+        };
+      }
+      if (action.payload === "ZA") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, sort: "ZA" },
+          pokemonsData: state.pokemonsData?.sort((a, b) => {
+            return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+          }),
+        };
+      }
+      if (action.payload === "attack") {
+        return {
+          ...state,
+          filterAndSort: { ...state.filterAndSort, sort: "attack" },
+          pokemonsData: state.pokemonsData?.sort((a, b) => {
+            return a.attack - b.attack;
+          }),
+        };
+      }
+    //*Pokemons Types
     case POKEMON_TYPES:
-      let dataTypes = [];
-      let database = state.pokemons?.filter((el) => el.created === true);
-      let dataApi = state.pokemons?.filter((el) => el.created === false);
-      dataApi?.filter((el) => {
-        if (typeof el.types === "string") {
-          const arr = el.types.split(",");
-          arr.map((element) => {
-            if (element === action.payload) {
-              dataTypes.push(el);
-            }
-          });
-        }
-      });
-      database?.filter((el) => {
-        el.Types.map((element) => {
-          if (element.name === action.payload) {
-            dataTypes.push(el);
+      const api = state.pokemons?.filter((el) => el.created === false);
+      const db = state.pokemons?.filter((el) => el.created === true);
+      const dbTypes = [];
+      const apiTypes = [];
+
+      if(state.filterAndSort.from === "API") {
+        api?.filter((el) => {
+          if (typeof el.types === "string") {
+            const arr = el.types.split(",");
+            arr.map((element) => {
+              if (element === action.payload) {
+                apiTypes.push(el);
+              }
+            });
           }
         });
-      });
-      return { ...state, typesData: dataTypes };
+      }
+
+      if(state.filterAndSort.from === "DB") {
+        db?.filter((el) => {
+          el.Types.map((element) => {
+            if (element.name === action.payload) {
+              dbTypes .push(el);
+            }
+          });
+        });
+      }
+
+      if(state.filterAndSort.from === "total") {
+        api?.filter((el) => {
+          if (typeof el.types === "string") {
+            const arr = el.types.split(",");
+            arr.map((element) => {
+              if (element === action.payload) {
+                apiTypes.push(el);
+              }
+            });
+          }
+        });
+        db?.filter((el) => {
+          el.Types.map((element) => {
+            if (element.name === action.payload) {
+              dbTypes .push(el);
+            }
+          });
+        });
+      }
+
+      return {
+        ...state,
+        filterAndSort: { ...state.filterAndSort, types: action.payload },
+        pokemonsData:[...dbTypes, ...apiTypes],
+      };
 
     default:
       return { ...state };
