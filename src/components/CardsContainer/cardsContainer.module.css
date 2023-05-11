@@ -14,6 +14,16 @@
   font-family: var(--font-family-primary);
   font-size: var(--text-medium);
 }
+.currentNum{
+  margin: 0 1px;
+  padding: 0 8px;
+  cursor: pointer;
+  background-color: #ffa500;
+}
+.currentNum:hover,
+.currentNum:active{
+  background-color: #c8b696;
+}
 .data {
   width: 60%;
   margin: 10px 0 0 0;

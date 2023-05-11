@@ -17,6 +17,11 @@ const CardsContainer = ({pokemons}) => {
   const first = last - amount;
   const data = pokemons?.slice(first, last);
 
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(pokemons.length / amount); i++) {
+    pageNumbers.push(i);
+  }
+
   const goToPage = (page) => {
     setCurrent(page);
     navigate(`/pokemons/${page}`);
@@ -30,7 +35,9 @@ const CardsContainer = ({pokemons}) => {
 
   const goToNextPage = () => {
     if (first < pokemons.length) {
-      goToPage(current + 1);
+      if(current < 6){
+        goToPage(current + 1);
+      } 
     }
   };
 
@@ -51,7 +58,13 @@ const CardsContainer = ({pokemons}) => {
         <button className={styles.btn} onClick={goToPrevPage}>
           {'<'}
         </button>
-        {<p className={styles.current}>{current}</p>}
+        {<p className={styles.current}>
+        {pageNumbers.map((pageNum) => (
+        <button key={pageNum} onClick={() => setCurrent(pageNum)}>
+          {<p className={styles.currentNum}>{pageNum}</p>}
+        </button>
+      ))}
+        </p>}
         <button className={styles.btn} onClick={goToNextPage}>
         {'>'}
         </button>
