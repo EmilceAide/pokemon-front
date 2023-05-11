@@ -36,17 +36,6 @@ const Detail = () => {
     }
   }, [id, pokemonName, pokemonId]);
 
-  if (data.length === 0) {
-    return (
-      <div className={styles.container}>
-      <h1 className={styles.textInfo}> {
-      `No se encontro el pokemón. Intentalo de nuevo más tarde.`
-      }</h1>
-      <img src={imgPikachu} alt="Imagén de Pikachu" />
-      </div>
-    );
-  }
-
   return (
     <div className={styles.container}>
       { data?.map((pokemon) => {
