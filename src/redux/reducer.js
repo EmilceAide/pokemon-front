@@ -24,7 +24,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POKEMONS:
-      return { ...state, pokemons: action.payload };
+      return { ...state, pokemons: action.payload, pokemonsData: action.payload  };
 
     case GET_POKEMON_ID:
       return { ...state, pokemonId: action.payload };

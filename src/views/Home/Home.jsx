@@ -14,13 +14,10 @@ import imgLoader from "../../assets/loader.gif"
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { pokemons, pokemonTypes, pokemonsFilter, typesData } = useSelector(
+  const { pokemons, pokemonTypes, pokemonsData,filterAndSort } = useSelector(
     (state) => state
   );
   const [typeState, setTypeState] = useState("");
-  const [dataPokemons, setDataPokemons] = useState(true);
-  const [dataPokemonFilter, setDataPokemonFilter] = useState(false);
-  const [dataPokemonTypes, setDataPokemonTypes] = useState(false);
 
   useEffect(() => {
     dispatch(getPokemons());
@@ -28,47 +25,38 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTypes());
   }, []);
+  useEffect(() => {
+    dispatch(filterPokemon('total'))
+  }, []);
 
-  const changeDataOrder = (option) => {
-    setDataPokemonTypes(false)
-    setDataPokemonFilter(false);
-    setDataPokemons(true)
-    dispatch(orderPokemon(option));
-  };
-  const changeDataFilter = (option) => {
-    setDataPokemons(false)
-    setDataPokemonTypes(false)
-    setDataPokemonFilter(true);
-    dispatch(filterPokemon(option));
-  };
+  console.log('dddd', filterAndSort, pokemonsData )
 
-  const changeDataTypes = (typeState) => {
-    setDataPokemons(false)
-    setDataPokemonFilter(false)
-    setDataPokemonTypes(true);
-    dispatch(typePokemon(typeState));
-  };
-  
 
   return (
     <div className={styles.container}>
       <section className={styles.btns}>
+      <button onClick={() =>  dispatch(filterPokemon('total'))}>
+          Todos
+        </button>
         <p>Ordenar:</p>
-        <button onClick={() => changeDataOrder("ASC")}>
+        <button onClick={() => dispatch(orderPokemon('ASC'))}>
           ASCENDENTE
         </button>
-        <button onClick={() =>changeDataOrder("DESC")}>
+        <button onClick={() => dispatch(orderPokemon('DESC'))}>
           DESCENDENTE
         </button>
-        <button onClick={() => changeDataOrder("alphabetical")}>
+        <button onClick={() =>  dispatch(orderPokemon('AZ'))}>
           A-Z
         </button>
-        <button onClick={() =>changeDataOrder("attack")}>
+        <button onClick={() =>  dispatch(orderPokemon('ZA'))}>
+          Z-A
+        </button>
+        <button onClick={() => dispatch(orderPokemon('attack'))}>
           PODER DE ATAQUE
         </button>
         <p>Filtrar:</p>
-        <button onClick={() => changeDataFilter("API")}>API</button>
-        <button onClick={() => changeDataFilter("DB")}>DB</button>
+        <button onClick={() =>  dispatch(filterPokemon('API'))}>API</button>
+        <button onClick={() => dispatch(filterPokemon('DB'))}>DB</button>
         <select onChange={(e) => setTypeState(e.target.value)}>
           <option>Tipo: </option>
           {pokemonTypes.map((el) => {
@@ -80,14 +68,12 @@ const Home = () => {
           })}
         </select>
         <div className={styles.btnFilter}>
-          <button onClick={() => changeDataTypes(typeState)}>Filtrar</button>
+          <button onClick={() =>  dispatch(typePokemon(typeState))}>Filtrar</button>
         </div>
       </section>
-      {!dataPokemonFilter && !dataPokemonTypes && (
-        <CardsContainer pokemons={pokemons} />
-      )}
-      {dataPokemonFilter && !dataPokemonTypes && !dataPokemons && <CardsContainer pokemons={pokemonsFilter}/>}
-      {dataPokemonTypes  && !dataPokemons && !dataPokemonFilter && <CardsContainer pokemons={typesData} />}
+    
+        <CardsContainer pokemons={pokemonsData} />
+      
       <section className={styles.loader}>
         <div><img className={styles.imgOne} src={imgLoader} /></div>
         <div><img className={styles.imgTwo} src={imgLoader} /></div>
