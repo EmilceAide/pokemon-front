@@ -35,7 +35,7 @@ const CardsContainer = ({pokemons}) => {
 
   const goToNextPage = () => {
     if (first < pokemons.length) {
-      if(current < 6){
+      if(current < pageNumbers.at(-1)){
         goToPage(current + 1);
       } 
     }
