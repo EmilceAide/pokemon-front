@@ -59,6 +59,9 @@ const Create = () => {
       setTypeSelect(typeSelect.filter((el) => el !== value));
       setForm({ ...form, types: typeSelect.filter((el) => el !== value) });
     }
+    if(form.types.length > 0){
+      errors.types = ""; 
+    }
   };
 
   const submitHandler = (e) => {
