@@ -33,6 +33,11 @@ export const validation = (form) => {
   if (form.weight < 0 || form.weight > 100){
     errors.weight = "Debe estar en el rango de 0 a 100"
   }
-
+  if(form.types.length < 2 ){
+    errors.types = "Deben selecionar dos tipos"
+  }
+  if(form.types.length > 2 ){
+    errors.types = "Solo deben ser dos tipos"
+  }
   return errors;
 };

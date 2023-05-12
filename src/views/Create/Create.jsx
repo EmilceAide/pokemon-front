@@ -42,7 +42,8 @@ const Create = () => {
   useEffect(() => {
     dispatch(getTypes());
   }, []);
-
+ 
+  
   const changeHandler = (e) => {
     const property = e.target.name;
     const value = e.target.value;
@@ -52,18 +53,14 @@ const Create = () => {
 
   const handleOnCheckbox = (e) => {
     const { value, checked } = e.target;
+    const property = e.target.name;
     if (checked) {
       setTypeSelect([...typeSelect, value]);
+      setErrors(validation({ ...form, types: [...typeSelect, value] }));
       setForm({ ...form, types: [...typeSelect, value] });
     } else {
       setTypeSelect(typeSelect.filter((el) => el !== value));
       setForm({ ...form, types: typeSelect.filter((el) => el !== value) });
-    }
-    if(form.types.length !== 1){
-      console.log(form.types)
-     errors.types='Tiene que selecionar dos tipos'
-    }else{
-      delete errors.types
     }
   };
 console.log(errors, 'errors')
