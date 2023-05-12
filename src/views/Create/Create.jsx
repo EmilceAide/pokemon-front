@@ -53,13 +53,13 @@ const Create = () => {
 
   const handleOnCheckbox = (e) => {
     const { value, checked } = e.target;
-    const property = e.target.name;
     if (checked) {
       setTypeSelect([...typeSelect, value]);
       setErrors(validation({ ...form, types: [...typeSelect, value] }));
       setForm({ ...form, types: [...typeSelect, value] });
     } else {
       setTypeSelect(typeSelect.filter((el) => el !== value));
+      setErrors(validation({ ...form, types: typeSelect.filter((el) => el !== value) }));
       setForm({ ...form, types: typeSelect.filter((el) => el !== value) });
     }
   };
